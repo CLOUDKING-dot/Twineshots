@@ -720,21 +720,38 @@ section h2 {
     justify-content: center;
   }
 }
-/* ==================== MOBILE FIXES ==================== */
+/* ==================== MOBILE HERO: SLIDER AT BOTTOM ==================== */
 @media (max-width: 768px) {
-  /* 1. HERO – Move slider BELOW text, not over it */
+  /* Hero Banner - Full height, content stacked */
+  .hero-banner {
+    height: auto;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 20px;
+  }
+
+  /* Hero Background */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  /* Hero Text - Top section */
   .hero-content {
     position: relative;
     top: auto;
     left: auto;
     transform: none;
-    padding: 20px;
+    padding: 60px 20px 20px;
     max-width: 100%;
     text-align: center;
-    z-index: 3;
-    background: rgba(0,0,0,0.4);
+    z-index: 2;
+    background: rgba(0,0,0,0.35);
     border-radius: 12px;
-    margin-bottom: 20px;
+    margin: 0 10px;
   }
 
   .hero-content h1 {
@@ -747,6 +764,7 @@ section h2 {
     line-height: 1.4;
   }
 
+  /* Slider - Pushed to bottom */
   .category-slider {
     position: relative;
     bottom: auto;
@@ -754,7 +772,12 @@ section h2 {
     right: 0 !important;
     height: 180px;
     padding: 0 20px 20px;
-    overflow: hidden;
+    z-index: 2;
+    margin-top: auto;
+  }
+
+  .slider-track {
+    justify-content: center;
   }
 
   .slide-card {
@@ -766,7 +789,7 @@ section h2 {
     transform: scale(1.15) translateY(-10px);
   }
 
-  /* 2. NAV – Fit all items in a scrollable horizontal bar */
+  /* Keep nav fix from before */
   .sidebar {
     padding: 15px 10px;
     overflow-x: auto;
@@ -788,6 +811,7 @@ section h2 {
     padding: 10px 6px;
     font-size: 11px;
     gap: 4px;
+    display: inline-flex !important;
   }
 
   .nav li ion-icon {
@@ -795,21 +819,15 @@ section h2 {
   }
 
   .nav li span {
-    display: block;
     white-space: nowrap;
   }
 
-  /* Ensure all icons (including Careers) are visible */
-  .nav li {
-    display: inline-flex !important;
-  }
-
-  /* Optional: hide scrollbar */
-  .sidebar::-webkit-scrollbar {
-    display: none;
-  }
+  .sidebar::-webkit-scrollbar,
   .sidebar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+  .sidebar::-webkit-scrollbar {
+    display: none;
   }
 }
