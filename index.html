@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Twineshots - Home</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/twine.png" type="image/png">
+
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+<div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/twine.png" alt="Twineshots Logo" class="sidebar-logo-img" />
+            </a>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li class="active">
+                    <ion-icon name="home-outline"></ion-icon>
+                    <span>Home</span>
+                </li>
+                <li>
+                    <ion-icon name="pricetags-outline"></ion-icon>
+                    <span>Packages</span>
+                </li>
+                <li>
+                    <ion-icon name="images-outline"></ion-icon>
+                    <span>Gallery</span>
+                </li>
+                <li>
+                    <ion-icon name="images-outline"></ion-icon>
+                    <span>Gallery</span>
+                </li>
+                <li>
+                    <ion-icon name="people-outline"></ion-icon>
+                    <span>Our Team</span>
+                </li>
+                <li>
+                    <ion-icon name="call-outline"></ion-icon>
+                    <span>Contact Us</span>
+                </li>
+                <li>
+                    <ion-icon name="information-circle-outline"></ion-icon>
+                    <span>About</span>
+                </li>
+                <li>
+                    <ion-icon name="briefcase-outline"></ion-icon>
+                    <span>Careers</span>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Banner (Compact Cinematic Slider) -->
+        <section class="hero-banner">
+            <div class="hero-bg" id="heroBg"></div>
+
+            <div class="hero-content">
+                <div class="category-info">
+                    <h1 id="mainTitle">Nature</h1>
+                    <p id="mainDesc">Experience the raw beauty of the world through our Nature photography collections.</p>
+                </div>
+            </div>
+
+            <div class="category-slider">
+                <div class="slider-track" id="sliderTrack">
+                    <!-- Slides will be duplicated by JS -->
+                    <div class="slide-card active" data-bg="images/1.jpg" data-title="Nature" data-desc="Experience the raw beauty of the world through our Nature photography collections.">
+                        <div class="meta"><h4>Nature</h4><p>Capturing Earth’s untouched beauty</p></div>
+                    </div>
+                    <div class="slide-card" data-bg="images/2.jpg" data-title="Weddings" data-desc="Timeless memories of love, captured forever.">
+                        <div class="meta"><h4>Weddings</h4><p>Timeless stories of love</p></div>
+                    </div>
+                    <div class="slide-card" data-bg="images/3.jpg" data-title="Journalism" data-desc="Real stories through a powerful lens.">
+                        <div class="meta"><h4>Journalism</h4><p>Stories that matter</p></div>
+                    </div>
+                    <div class="slide-card" data-bg="images/4.jpg" data-title="Portraits" data-desc="Personal, expressive, and truly human portraits.">
+                        <div class="meta"><h4>Portraits</h4><p>Faces that speak</p></div>
+                    </div>
+                    <div class="slide-card" data-bg="images/5.jpg" data-title="Events" data-desc="Capturing energy, connection, and joy in every moment.">
+                        <div class="meta"><h4>Events</h4><p>Moments that matter</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Team -->
+        <section class="team-section">
+            <h2>Our Team</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <img src="images/staff/16.JPG" alt="John Doe" />
+                    <div class="team-info">
+                        <h4>ATWIINE GILBERT</h4>
+                        <p>C.E.O</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img src="images/staff/1.JPEG" alt="Sarah Lee" />
+                    <div class="team-info">
+                        <h4>Sarah</h4>
+                        <p>Creative Director</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img src="images/staff/2.JPEG" alt="Alex Kim" />
+                    <div class="team-info">
+                        <h4>Alex</h4>
+                        <p>Videographer</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img src="images/staff/3.JPEG" alt="Emma Rose" />
+                    <div class="team-info">
+                        <h4>Emma</h4>
+                        <p>Editor</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img src="images/staff/4.JPEG" alt="John Doe" />
+                    <div class="team-info">
+                        <h4>Eric</h4>
+                        <p>Photographer</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img src="images/staff/5.JPEG" alt="John Doe" />
+                    <div class="team-info">
+                        <h4>Trevor</h4>
+                        <p>Photographer</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img src="images/staff/6.JPEG" alt="John Doe" />
+                    <div class="team-info">
+                        <h4>Chris</h4>
+                        <p>Photographer</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img src="images/staff/7.JPEG" alt="John Doe" />
+                    <div class="team-info">
+                        <h4>Derrick</h4>
+                        <p>Photographer</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img src="images/staff/8.JPEG" alt="John Doe" />
+                    <div class="team-info">
+                        <h4>Tracy</h4>
+                        <p>Photographer</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img src="images/staff/9.JPEG" alt="John Doe" />
+                    <div class="team-info">
+                        <h4>Joshua</h4>
+                        <p>Videographer</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img src="images/staff/10.JPEG" alt="John Doe" />
+                    <div class="team-info">
+                        <h4>Giovanni</h4>
+                        <p>Lead Videographer</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img src="images/staff/11.JPEG" alt="John Doe" />
+                    <div class="team-info">
+                        <h4>Mercy</h4>
+                        <p>Lead Editor</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img src="images/staff/12.JPEG" alt="John Doe" />
+                    <div class="team-info">
+                        <h4>Simon</h4>
+                        <p>Lead Photographer</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img src="images/staff/13.JPEG" alt="John Doe" />
+                    <div class="team-info">
+                        <h4>Rodney</h4>
+                        <p>Editor</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img src="images/staff/14.JPEG" alt="John Doe" />
+                    <div class="team-info">
+                        <h4>Angel</h4>
+                        <p>Secretary</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img src="images/staff/15.JPEG" alt="John Doe" />
+                    <div class="team-info">
+                        <h4>Winfred</h4>
+                        <p>Editor</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories -->
+        <section class="categories-section">
+            <h2>Categories</h2>
+            <div class="categories-scroll">
+                <div class="category-card" style="--gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%)">
+                    <div class="category-icon">Weddings</div>
+                    <p>Weddings</p>
+                </div>
+                <div class="category-card" style="--gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%)">
+                    <div class="category-icon">Nature</div>
+                    <p>Nature</p>
+                </div>
+                <div class="category-card" style="--gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)">
+                    <div class="category-icon">Journalism</div>
+                    <p>Journalism</p>
+                </div>
+                <div class="category-card" style="--gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)">
+                    <div class="category-icon">Party</div>
+                    <p>Party</p>
+                </div>
+                <div class="category-card" style="--gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%)">
+                    <div class="category-icon">Portraits</div>
+                    <p>Portraits</p>
+                </div>
+                <div class="category-card" style="--gradient: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)">
+                    <div class="category-icon">Events</div>
+                    <p>Events</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Showcase -->
+        <section class="showcase-section">
+            <h2>Showcase</h2>
+            <div class="showcase-grid">
+                <div class="showcase-card">
+                    <img src="images/6.jpg" alt="Wedding" />
+                    <div class="showcase-overlay">
+                        <h3>Elegant Alpine Wedding</h3>
+                        <p>Captured at Serena</p>
+                    </div>
+                </div>
+                <div class="showcase-card">
+                    <img src="images/7.jpg" alt="Celebration" />
+                    <div class="showcase-overlay">
+                        <h3>Northern Lights</h3>
+                        <p>Kavule, 2024</p>
+                    </div>
+                </div>
+                <div class="showcase-card">
+                    <img src="images/8.jpg" alt="Food" />
+                    <div class="showcase-overlay">
+                        <h3>Jubilation</h3>
+                        <p>Documentary Series</p>
+                    </div>
+                </div>
+                <div class="showcase-card">
+                    <img src="images/9.jpg" alt="Party" />
+                    <div class="showcase-overlay">
+                        <h3>Neon Nights</h3>
+                        <p>Annual Gala 2025</p>
+                    </div>
+                </div>
+                <div class="showcase-card">
+                    <img src="images/10.jpg" alt="Party" />
+                    <div class="showcase-overlay">
+                        <h3>Kukyala</h3>
+                        <p>August 2025</p>
+                    </div>
+                </div>
+                <div class="showcase-card">
+                    <img src="images/11.jpg" alt="Party" />
+                    <div class="showcase-overlay">
+                        <h3>Introduction</h3>
+                        <p>Mbarara</p>
+                    </div>
+                </div>
+                <div class="showcase-card">
+                    <img src="images/12.png" alt="Party" />
+                    <div class="showcase-overlay">
+                        <h3>Campaign</h3>
+                        <p>Masaka</p>
+                    </div>
+                </div>
+                <div class="showcase-card">
+                    <img src="images/14.jpg" alt="Party" />
+                    <div class="showcase-overlay">
+                        <h3>Reception Nights</h3>
+                        <p>Kampala</p>
+                    </div>
+                </div>
+                <div class="showcase-card">
+                    <img src="images/15.jpg" alt="Party" />
+                    <div class="showcase-overlay">
+                        <h3>Mass</h3>
+                        <p>Easters</p>
+                    </div>
+                </div>
+                <div class="showcase-card">
+                    <img src="images/16.png" alt="Party" />
+                    <div class="showcase-overlay">
+                        <h3>Evers</h3>
+                        <p>Entebbe</p>
+                    </div>
+                </div>
+                <div class="showcase-card">
+                    <img src="images/17.jpg" alt="Party" />
+                    <div class="showcase-overlay">
+                        <h3>Wedding</h3>
+                        <p>Nakawa</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partners Only -->
+        <div class="partners-only">
+            <div class="partners-logos">
+                <a href="https://cloudking.systems" target="_blank"><img src="images/cks.png" alt="CloudKing Systems" /></a>
+                <a href="https://partner2.com" target="_blank"><img src="images/partners/Position.png" alt="Partner 2" /></a>
+                <a href="https://partner3.com" target="_blank"><img src="images/partners/20tents.jpg" alt="Partner 3" /></a>
+                <a href="https://partner4.com" target="_blank"><img src="images/partners/Sua.jpg" alt="Partner 4" /></a>
+                <a href="https://partner5.com" target="_blank"><img src="images/partners/Bni.png" alt="Partner 5" /></a>
+                <a href="https://partner6.com" target="_blank"><img src="images/partners/stuart.PNG" alt="Partner 6" /></a>
+                <a href="https://partner7.com" target="_blank"><img src="images/partners/Croplife.PNG" alt="Partner 7" /></a>
+                <a href="https://partner8.com" target="_blank"><img src="images/partners/Exceed.png" alt="Partner 8" /></a>
+                <a href="https://partner8.com" target="_blank"><img src="images/partners/itech.PNG" alt="Partner 8" /></a>
+                <a href="https://partner8.com" target="_blank"><img src="images/partners/Leap.png" alt="Partner 8" /></a>
+                <a href="https://partner8.com" target="_blank"><img src="images/partners/Makerere.png" alt="Partner 8" /></a>
+                <a href="https://partner8.com" target="_blank"><img src="images/partners/olink.PNG" alt="Partner 8" /></a>
+                <a href="https://partner8.com" target="_blank"><img src="images/partners/Shake.png" alt="Partner 8" /></a>
+                <a href="https://partner8.com" target="_blank"><img src="images/partners/Shuttle.PNG" alt="Partner 8" /></a>
+                <a href="https://partner8.com" target="_blank"><img src="images/partners/Sprout.png" alt="Partner 8" /></a>
+                <a href="https://partner8.com" target="_blank"><img src="images/partners/Tents.png" alt="Partner 8" /></a>
+                <a href="https://partner8.com" target="_blank"><img src="images/partners/Xtent.JPEG" alt="Partner 8" /></a>
+                <a href="https://partner8.com" target="_blank"><img src="images/partners/shop.JPEG" alt="Partner 8" /></a>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Floating WhatsApp -->
+<div class="whatsapp-float" id="whatsappBtn">
+    <ion-icon name="logo-whatsapp"></ion-icon>
+</div>
+
+<!-- WhatsApp Modal -->
+<div class="whatsapp-modal" id="whatsappModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <ion-icon name="logo-whatsapp"></ion-icon>
+            <h3>Contact Us on WhatsApp</h3>
+            <span class="close" id="closeModal">×</span>
+        </div>
+        <p>Select a service center to start chatting:</p>
+        <div class="service-list">
+            <button class="service-btn" data-phone="256752969130">
+                <ion-icon name="logo-whatsapp"></ion-icon> Twineshots Central Support
+            </button>
+            <button class="service-btn" data-phone="256776699609">
+                <ion-icon name="logo-whatsapp"></ion-icon> Twineshots Kampala Branch
+            </button>
+            <button class="service-btn" data-phone="256700000003">
+                <ion-icon name="logo-whatsapp"></ion-icon> Twineshots Makerere Branch
+            </button>
+        </div>
+        <div class="powered-by">
+            <img src="images/cks.png" alt="CloudKing Systems" class="cks-logo" />
+            <span>Powered by</span> CLOUDKING SYSTEMS
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-col">
+            <h4>Twineshots</h4>
+            <p>We are your top photographying company  that understands <br>how to capture long lasting memories with you.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <p>Email: ask@twineshots.com</p>
+            <p>Phone: +256752969130 / +256393228953</p>
+        </div>
+        <div class="footer-col">
+            <h4>Location</h4>
+            <p>Elements courts, along side Makerere Kasubi road, <br>Room G001</p>
+        </div>
+        <div class="footer-col">
+            <h4>Follow Us</h4>
+            <div class="social-links">
+                <a href="https://www.instagram.com/twineshots?r=nametag"><ion-icon name="logo-instagram"></ion-icon></a>
+                <a href="https://www.facebook.com/pg/twineshots/posts/"><ion-icon name="logo-facebook"></ion-icon></a>
+                <a href="https://twitter.com/twineshots"><ion-icon name="logo-twitter"></ion-icon></a>
+                <a href="https://www.instagram.com/twineshots_studio?igsh=MjE2NmFmZzhlY3Rt&utm_source=qr"><ion-icon name="logo-instagram"></ion-icon></a>
+                <a href="https://www.youtube.com/channel/UC6C1Alg0wFA7QTeHXMPZZiQ"><ion-icon name="logo-youtube"></ion-icon></a>
+                <a href="https://www.tiktok.com/@twineshots?_t=8lt0P1lwB2U&_r=1"><ion-icon name="logo-tiktok"></ion-icon></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 Twineshots. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
