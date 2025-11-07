@@ -720,3 +720,96 @@ section h2 {
     justify-content: center;
   }
 }
+/* ==================== MOBILE FIXES ==================== */
+@media (max-width: 768px) {
+  /* 1. HERO – Move slider BELOW text, not over it */
+  .hero-content {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    padding: 20px;
+    max-width: 100%;
+    text-align: center;
+    z-index: 3;
+    background: rgba(0,0,0,0.4);
+    border-radius: 12px;
+    margin-bottom: 20px;
+  }
+
+  .hero-content h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+  }
+
+  .hero-content p {
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .category-slider {
+    position: relative;
+    bottom: auto;
+    left: 0 !important;
+    right: 0 !important;
+    height: 180px;
+    padding: 0 20px 20px;
+    overflow: hidden;
+  }
+
+  .slide-card {
+    width: 110px;
+    height: 160px;
+  }
+
+  .slide-card.active {
+    transform: scale(1.15) translateY(-10px);
+  }
+
+  /* 2. NAV – Fit all items in a scrollable horizontal bar */
+  .sidebar {
+    padding: 15px 10px;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav ul {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-start;
+    padding: 0 10px;
+    min-width: max-content;
+  }
+
+  .nav li {
+    flex-direction: column;
+    min-width: 60px;
+    padding: 10px 6px;
+    font-size: 11px;
+    gap: 4px;
+  }
+
+  .nav li ion-icon {
+    font-size: 18px;
+  }
+
+  .nav li span {
+    display: block;
+    white-space: nowrap;
+  }
+
+  /* Ensure all icons (including Careers) are visible */
+  .nav li {
+    display: inline-flex !important;
+  }
+
+  /* Optional: hide scrollbar */
+  .sidebar::-webkit-scrollbar {
+    display: none;
+  }
+  .sidebar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
