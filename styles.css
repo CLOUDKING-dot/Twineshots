@@ -448,3 +448,89 @@ section h2 { font-size: 22px; margin-bottom: 16px; font-weight: 600; color: #1f2
         height: 70px;
     }
 }
+/* ==================== MOBILE MENU – NOW EXACTLY LIKE DESKTOP NAV ==================== */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 300px;
+    height: 100vh;
+    background: #1e3a8a;                    /* Same navy blue */
+    z-index: 9999;
+    transition: right 0.4s cubic-bezier(0.77, 0, 0.18, 1);
+    padding: 20px;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.3);
+    overflow-y: auto;
+}
+
+.mobile-menu.active { right: 0; }
+
+.mobile-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #172554;
+}
+
+.mobile-logo { height: 50px; }
+
+.mobile-menu-header ion-icon {
+    font-size: 32px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Links now match desktop exactly */
+.mobile-menu ul li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #93c5fd !important;              /* Same light blue */
+    font-size: 15px;
+    font-weight: 500;
+    padding: 12px 18px;
+    border-radius: 8px;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu ul li a ion-icon {
+    font-size: 21px;
+}
+
+/* Hover = same as desktop */
+.mobile-menu ul li a:hover {
+    color: white !important;
+    background: #172554;
+}
+
+/* Active page = red background like desktop */
+.mobile-menu ul li a.active,
+.mobile-menu ul li a.active:hover {
+    color: white !important;
+    background: #e50914;                     /* Netflix red – matches desktop */
+    font-weight: 600;
+}
+
+/* Social icons in mobile menu – same as top bar */
+.mobile-social a {
+    color: #93c5fd;
+    font-size: 24px;
+    transition: all 0.3s ease;
+}
+
+.mobile-social a:hover {
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* Optional: Make the close (X) button match desktop style */
+#closeMenu {
+    color: #93c5fd;
+    transition: color 0.3s;
+}
+#closeMenu:hover {
+    color: white;
+}
