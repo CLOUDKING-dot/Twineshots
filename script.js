@@ -25,13 +25,35 @@ document.addEventListener("DOMContentLoaded", () => {
       window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
     });
   });
+  // AUTO-FILTER GALLERY BASED ON URL (e.g. gallery.html?category=weddings)
+  document.addEventListener("DOMContentLoaded", function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const category = urlParams.get('category');
 
-  // Category Cards
-  document.querySelectorAll('.category-card').forEach(card => {
-    card.addEventListener('click', () => {
-      const cat = card.querySelector('p').textContent;
-      alert(`Opening ${cat} gallery...`);
-    });
+      if (category) {
+          // Trigger the correct filter button
+          const targetBtn = document.querySelector(`.filter-btn[data-filter="${category}"]`);
+          if (targetBtn) {
+              // Remove active from all, add to this one
+              document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+              targetBtn.classList.add('active');
+
+              // Filter the images
+              document.querySelectorAll('.gallery-item').forEach(item => {
+                  const itemCat = item.getAttribute('data-category');
+                  if (category === 'all' || itemCat === category) {
+                      item.style.display = 'block';
+                      setTimeout(() => item.classList.add('visible'), 100);
+                  } else {
+                      item.style.display = 'none';
+                      item.classList.remove('visible');
+                  }
+              });
+
+              // Smooth scroll to gallery after filter
+              document.querySelector('.gallery-container').scrollIntoView({ behavior: 'smooth' });
+          }
+      }
   });
 
   // ============================

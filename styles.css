@@ -277,6 +277,23 @@ section h2 { font-size: 22px; margin-bottom: 16px; font-weight: 600; color: #1f2
 .social-links a:hover { background: #1e40af; color: white; transform: translateY(-3px); }
 .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid rgba(59, 130, 246, 0.3); color: #1e40af; font-size: 13px; opacity: 0.8; }
 
+/* REMOVE UNDERLINE FROM CATEGORY CARDS + KEEP CLEAN LOOK */
+.categories-scroll a {
+    text-decoration: none !important;
+    color: white !important;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Optional: nice little hover lift (feels premium) */
+.categories-scroll a:hover {
+    transform: translateY(-4px);
+}
+
+
+
+
 /* Responsive - Keep your original mobile behavior */
 @media (max-width: 1200px) {
   .hero-content { left: 40px; }
