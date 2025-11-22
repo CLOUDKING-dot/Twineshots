@@ -534,3 +534,50 @@ section h2 { font-size: 22px; margin-bottom: 16px; font-weight: 600; color: #1f2
 #closeMenu:hover {
     color: white;
 }
+/* ==================== MOBILE MENU – ICONS EXACTLY LIKE DESKTOP ==================== */
+.mobile-menu ul li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #93c5fd !important;
+    font-size: 15px;                    /* Same font size */
+    font-weight: 500;
+    padding: 12px 18px;
+    border-radius: 8px;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+}
+
+/* ICONS — EXACT SAME AS DESKTOP */
+.mobile-menu ul li a ion-icon {
+    font-size: 21px !important;         /* Exact same size as desktop */
+    color: #93c5fd;                     /* Same light blue */
+    transition: color 0.3s ease;
+}
+
+/* Hover state – icons turn white just like desktop */
+.mobile-menu ul li a:hover,
+.mobile-menu ul li a:hover ion-icon {
+    color: white !important;
+    background: #172554;
+}
+
+/* Active page – red background + white icon (exactly like desktop) */
+.mobile-menu ul li a.active,
+.mobile-menu ul li a.active ion-icon {
+    color: white !important;
+    background: #e50914;
+    font-weight: 600;
+}
+
+/* Social icons in mobile menu – same size & behavior */
+.mobile-social a ion-icon {
+    font-size: 24px;
+    color: #93c5fd;
+    transition: all 0.3s ease;
+}
+
+.mobile-social a:hover ion-icon {
+    color: white;
+    transform: translateY(-3px);
+}
