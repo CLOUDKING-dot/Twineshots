@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Twineshots - gallery</title>
+    <link rel="icon" href="images/twine.png" type="image/png">
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --dark: #172554;
+            --light: #f8fafc;
+            --accent: #3b82f6;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--light); color: #1f2937; overflow-x: hidden; }
+
+        /* ==================== NAVBAR (same as index) ==================== */
+        .top-navbar { /* your existing navbar styles - paste from index.html */ }
+        /* ... (keep your full navbar CSS here) ... */
+
+        /* ==================== HERO SECTION ==================== */
+        .gallery-hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('images/hero.jpg') center/cover no-repeat fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        .gallery-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(30,58,138,0.8), rgba(59,130,246,0.6));
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInDown 1.2s ease-out;
+        }
+        .hero-content h1 {
+            font-size: 76px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        .hero-content p {
+            font-size: 24px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+
+        /* ==================== FILTER TABS ==================== */
+        .filter-tabs {
+            padding: 80px 40px 40px;
+            text-align: center;
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .filter-btn {
+            background: transparent;
+            border: 2px solid #e2e8f4;
+            color: #475569;
+            padding: 14px 32px;
+            margin: 8px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(30,58,138,0.3);
+        }
+
+        /* ==================== GALLERY GRID ==================== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+            padding: 40px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .gallery-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .gallery-item img, .gallery-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        .gallery-item:hover img, .gallery-item:hover video {
+            transform: scale(1.12);
+        }
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(transparent 50%, rgba(30,58,138,0.9));
+            display: flex;
+            align-items: flex-end;
+            padding: 30px;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        .gallery-overlay h3 {
+            color: white;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        /* ==================== CATEGORY SECTIONS ==================== */
+        .category-section {
+            padding: 120px 40px;
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 1s ease-out;
+        }
+        .category-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .category-title {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 80px;
+            color: var(--primary);
+            position: relative;
+        }
+        .category-title::after {
+            content: '';
+            width: 120px;
+            height: 5px;
+            background: var(--primary);
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+        }
+
+        /* ==================== LIGHTBOX (Simple Built-in) ==================== */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox img, .lightbox video {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 16px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+        }
+        .close-lightbox {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 50px;
+            color: white;
+            cursor: pointer;
+            z-index: 10000;
+        }
+
+        /* ==================== ANIMATIONS ==================== */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .gallery-hero h1 { font-size: 52px; }
+            .gallery-hero p { font-size: 18px; }
+            .filter-btn { padding: 12px 20px; font-size: 14px; }
+            .gallery-grid { grid-template-columns: 1fr; padding: 20px; }
+            .category-title { font-size: 36px; }
+        }
+    </style>
+</head>
+<body>
+<!-- ==================== FIXED TOP NAVBAR (REEM STYLE) ==================== -->
+<header class="top-navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/twine.png" alt="Twineshots Logo" class="top-logo-img" />
+            </a>
+        </div>
+
+        <!-- Desktop Nav -->
+        <nav class="nav desktop-nav">
+            <ul>
+                <li><a href="index.html"><ion-icon name="home-outline"></ion-icon><span>Home</span></a></li>
+                <li class="active"><a href="gallery.html"><ion-icon name="images-outline"></ion-icon><span>Gallery</span></a></li>
+                <li><a href="team.html"><ion-icon name="people-outline"></ion-icon><span>Our Team</span></a></li>
+                <li><a href="info.html"><ion-icon name="information-circle-outline"></ion-icon><span>Info</span></a></li>
+                <li><a href="contact.html"><ion-icon name="call-outline"></ion-icon><span>Contact Us</span></a></li>
+                <li><a href="career.html"><ion-icon name="briefcase-outline"></ion-icon><span>Careers</span></a></li>
+            </ul>
+        </nav>
+
+        <div class="social-top">
+            <a href="https://www.instagram.com/twineshots?r=nametag" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a>
+            <a href="https://www.youtube.com/channel/UC6C1Alg0wFA7QTeHXMPZZiQ" target="_blank"><ion-icon name="logo-youtube"></ion-icon></a>
+            <a href="https://twitter.com/twineshots" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a>
+            <a href="https://www.facebook.com/pg/twineshots/posts/" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
+        </div>
+
+        <!-- Mobile Hamburger -->
+        <div class="hamburger" id="hamburger">
+            <ion-icon name="menu-outline"></ion-icon>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <img src="images/twine.png" alt="Logo" class="mobile-logo">
+            <ion-icon name="close-outline" id="closeMenu"></ion-icon>
+        </div>
+        <ul>
+            <li><a href="index.html"><ion-icon name="home-outline"></ion-icon> Home</a></li>
+            <li class="active"><a href="gallery.html"><ion-icon name="images-outline"></ion-icon> Gallery</a></li>
+            <li><a href="team.html"><ion-icon name="people-outline"></ion-icon> Our Team</a></li>
+            <li><a href="info.html"><ion-icon name="information-circle-outline"></ion-icon> Info</a></li>
+            <li><a href="contact.html"><ion-icon name="call-outline"></ion-icon> Contact Us</a></li>
+            <li><a href="career.html"><ion-icon name="briefcase-outline"></ion-icon> Careers</a></li>
+        </ul>
+        <div class="mobile-social">
+            <a href="https://www.instagram.com/twineshots?r=nametag" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a>
+            <a href="https://www.youtube.com/channel/UC6C1Alg0wFA7QTeHXMPZZiQ" target="_blank"><ion-icon name="logo-youtube"></ion-icon></a>
+            <a href="https://twitter.com/twineshots" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a>
+            <a href="https://www.facebook.com/pg/twineshots/posts/" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
+        </div>
+    </div>
+</header>
+
+<!-- ==================== HERO ==================== -->
+<section class="gallery-hero">
+    <div class="hero-content">
+        <h1>Our Gallery</h1>
+        <p>Explore breathtaking moments captured with passion, precision, and artistry</p>
+    </div>
+</section>
+
+<!-- ==================== FILTER TABS ==================== -->
+<div class="filter-tabs">
+    <button class="filter-btn active" data-filter="all">All Works</button>
+    <button class="filter-btn" data-filter="weddings">Weddings</button>
+    <button class="filter-btn" data-filter="corporate">Corporate Events</button>
+    <button class="filter-btn" data-filter="headshots">Headshots</button>
+    <button class="filter-btn" data-filter="architecture">Architecture & Interior</button>
+    <button class="filter-btn" data-filter="events">Events Coverage</button>
+    <button class="filter-btn" data-filter="studio">Studio Sessions</button>
+    <button class="filter-btn" data-filter="industrial">Industrial</button>
+</div>
+
+<!-- ==================== GALLERY GRID ==================== -->
+<div class="gallery-container">
+    <div class="gallery-grid" id="galleryGrid">
+        <!-- Weddings -->
+        <div class="gallery-item" data-category="weddings">
+            <img src="images/gallery/weddings/IMG_4797.jpg" alt="Wedding">
+            <div class="gallery-overlay"><h3>Elegant Wedding at Serena</h3></div>
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="images/gallery/weddings/IMG_4798.jpg" alt="Wedding">
+            <div class="gallery-overlay"><h3>Garden Vows</h3></div>
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="images/gallery/weddings/IMG_4802.jpg" alt="Wedding">
+            <div class="gallery-overlay"><h3>Golden Vows</h3></div>
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="images/gallery/weddings/IMG_4803.jpg" alt="Wedding">
+            <div class="gallery-overlay"><h3>Garden Times</h3></div>
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="images/gallery/weddings/IMG_4804.jpg" alt="Wedding">
+            <div class="gallery-overlay"><h3>Super Wedding</h3></div>
+        </div>
+
+        <!-- Corporate Events -->
+        <div class="gallery-item" data-category="corporate">
+            <img src="images/gallery/corporate/IMG_4794.jpg" alt="Corporate Event">
+            <div class="gallery-overlay"><h3>Annual Gala 2025</h3></div>
+        </div>
+        <div class="gallery-item" data-category="corporate">
+            <img src="images/gallery/corporate/IMG_4795.jpg" alt="Corporate Event">
+            <div class="gallery-overlay"><h3>Sports 2025</h3></div>
+        </div>
+        <div class="gallery-item" data-category="corporate">
+            <img src="images/gallery/corporate/IMG_4796.jpg" alt="Corporate Event">
+            <div class="gallery-overlay"><h3>Offices</h3></div>
+        </div>
+        <div class="gallery-item" data-category="corporate">
+            <img src="images/gallery/corporate/IMG_4800.jpg" alt="Corporate Event">
+            <div class="gallery-overlay"><h3>Ceremonial</h3></div>
+        </div>
+        <div class="gallery-item" data-category="corporate">
+            <img src="images/gallery/corporate/IMG_4801.jpg" alt="Corporate Event">
+            <div class="gallery-overlay"><h3>Celebrations</h3></div>
+        </div>
+
+        <!-- Headshots -->
+        <div class="gallery-item" data-category="headshots">
+            <img src="images/gallery/headshots/IMG_4787.jpg" alt="Headshot">
+            <div class="gallery-overlay"><h3>Professional Portrait</h3></div>
+        </div>
+        <div class="gallery-item" data-category="headshots">
+            <img src="images/gallery/headshots/IMG_4788.jpg" alt="Headshot">
+            <div class="gallery-overlay"><h3>Landscape</h3></div>
+        </div>
+        <div class="gallery-item" data-category="headshots">
+            <img src="images/gallery/headshots/IMG_4793.jpg" alt="Headshot">
+            <div class="gallery-overlay"><h3>Millenial</h3></div>
+        </div>
+        <div class="gallery-item" data-category="headshots">
+            <img src="images/gallery/headshots/IMG_4799.jpg" alt="Headshot">
+            <div class="gallery-overlay"><h3>Centuary</h3></div>
+        </div>
+
+        <!-- Architecture -->
+        <div class="gallery-item" data-category="architecture">
+            <img src="images/gallery/architecture/IMG_4789.jpg" alt="Architecture">
+            <div class="gallery-overlay"><h3>Modern Residence</h3></div>
+        </div>
+        <div class="gallery-item" data-category="architecture">
+            <img src="images/gallery/architecture/IMG_4790.jpg" alt="Architecture">
+            <div class="gallery-overlay"><h3>Residence</h3></div>
+        </div>
+        <div class="gallery-item" data-category="architecture">
+            <img src="images/gallery/architecture/IMG_4791.jpg" alt="Architecture">
+            <div class="gallery-overlay"><h3>Styles</h3></div>
+        </div>
+        <div class="gallery-item" data-category="architecture">
+            <img src="images/gallery/architecture/IMG_4792.jpg" alt="Architecture">
+            <div class="gallery-overlay"><h3>Cooling</h3></div>
+        </div>
+
+        <!-- Events -->
+        <div class="gallery-item" data-category="events">
+            <video src="images/gallery/events/1.mov" poster="images/gallery/events/IMG_4785.jpg" muted loop></video>
+            <div class="gallery-overlay"><h3>Graduation Ceremony</h3></div>
+        </div>
+        <div class="gallery-item" data-category="events">
+            <video src="images/gallery/events/2.MP4" poster="images/gallery/events/IMG_4786.jpg" muted loop></video>
+            <div class="gallery-overlay"><h3>Introduction Ceremony</h3></div>
+        </div>
+
+        <!-- Studio -->
+        <div class="gallery-item" data-category="studio">
+            <img src="images/gallery/studio/IMG_4781.jpg" alt="Studio">
+            <div class="gallery-overlay"><h3>Fashion Studio Shoot</h3></div>
+        </div>
+        <div class="gallery-item" data-category="studio">
+            <img src="images/gallery/studio/IMG_4782.jpg" alt="Studio">
+            <div class="gallery-overlay"><h3>Party Studio Shoot</h3></div>
+        </div>
+
+        <!-- Industrial -->
+        <div class="gallery-item" data-category="industrial">
+            <img src="images/gallery/industrial/IMG_4783.jpg" alt="Industrial">
+            <div class="gallery-overlay"><h3>Factory Documentation</h3></div>
+        </div>
+        <div class="gallery-item" data-category="industrial">
+            <img src="images/gallery/industrial/IMG_4784.jpg" alt="Industrial">
+            <div class="gallery-overlay"><h3>Documentation</h3></div>
+        </div>
+
+        <!-- Add 20+ more items like this... -->
+    </div>
+</div>
+
+<!-- ==================== LIGHTBOX ==================== -->
+<div class="lightbox" id="lightbox">
+    <span class="close-lightbox" id="closeLightbox">×</span>
+    <img src="" alt="" id="lightboxImg">
+    <video src="" id="lightboxVideo" controls autoplay muted></video>
+</div>
+
+<!-- WhatsApp Float Button -->
+<div class="whatsapp-float" id="whatsappBtn">
+    <ion-icon name="logo-whatsapp"></ion-icon>
+</div>
+
+<!-- WhatsApp Modal -->
+<div class="whatsapp-modal" id="whatsappModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <ion-icon name="logo-whatsapp"></ion-icon>
+            <h3>Contact Us on WhatsApp</h3>
+            <span class="close" id="closeModal">×</span>
+        </div>
+        <p>Select a service center to start chatting:</p>
+        <div class="service-list">
+            <button class="service-btn" data-phone="256752969130"><ion-icon name="logo-whatsapp"></ion-icon> Twineshots Central Support</button>
+            <button class="service-btn" data-phone="256776699609"><ion-icon name="logo-whatsapp"></ion-icon> Twineshots Kampala Branch</button>
+            <button class="service-btn" data-phone="256700000003"><ion-icon name="logo-whatsapp"></ion-icon> Twineshots Makerere Branch</button>
+        </div>
+        <div class="powered-by">
+            <img src="images/cks.png" alt="CloudKing Systems" class="cks-logo" />
+            <span>Powered by</span> CLOUDKING SYSTEMS
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-col">
+            <h4>Twineshots</h4>
+            <p>We are your top photography company that understands how to capture long lasting memories with you.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <p>Email: ask@twineshots.com</p>
+            <p>Phone: +256752969130 / +256393228953</p>
+        </div>
+        <div class="footer-col">
+            <h4>Location</h4>
+            <p>Elements courts, alongside Makerere Kasubi road,<br>Room G001</p>
+        </div>
+        <div class="footer-col">
+            <h4>Follow Us</h4>
+            <div class="social-links">
+                <a href="https://www.instagram.com/twineshots?r=nametag"><ion-icon name="logo-instagram"></ion-icon></a>
+                <a href="https://www.facebook.com/pg/twineshots/posts/"><ion-icon name="logo-facebook"></ion-icon></a>
+                <a href="https://twitter.com/twineshots"><ion-icon name="logo-twitter"></ion-icon></a>
+                <a href="https://www.instagram.com/twineshots_studio?igsh=MjE2NmFmZzhlY3Rt&utm_source=qr"><ion-icon name="logo-instagram"></ion-icon></a>
+                <a href="https://www.youtube.com/channel/UC6C1Alg0wFA7QTeHXMPZZiQ"><ion-icon name="logo-youtube"></ion-icon></a>
+                <a href="https://www.tiktok.com/@twineshots?_t=8lt0P1lwB2U&_r=1"><ion-icon name="logo-tiktok"></ion-icon></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 Twineshots. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+    // Filter Functionality
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelector('.filter-btn.active').classList.remove('active');
+            btn.classList.add('active');
+
+            const filter = btn.getAttribute('data-filter');
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                    item.style.display = 'block';
+                    setTimeout(() => item.classList.add('visible'), 100);
+                } else {
+                    item.style.display = 'none';
+                    item.classList.remove('visible');
+                }
+            });
+        });
+    });
+
+    // Lightbox
+    document.querySelectorAll('.gallery-item').forEach(item => {
+        item.addEventListener('click', () => {
+            const img = item.querySelector('img');
+            const video = item.querySelector('video');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            const lightboxVideo = document.getElementById('lightboxVideo');
+
+            if (img) {
+                lightboxImg.src = img.src;
+                lightboxImg.style.display = 'block';
+                lightboxVideo.style.display = 'none';
+            } else if (video) {
+                lightboxVideo.src = video.src;
+                lightboxVideo.style.display = 'block';
+                lightboxImg.style.display = 'none';
+            }
+            lightbox.classList.add('active');
+        });
+    });
+
+    document.getElementById('closeLightbox').addEventListener('click', () => {
+        document.getElementById('lightbox').classList.remove('active');
+        document.getElementById('lightboxVideo').pause();
+    });
+
+    // Animation on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.gallery-item').forEach(item => observer.observe(item));
+</script>
+
+<script src="script.js"></script>
+
+</body>
+</html>

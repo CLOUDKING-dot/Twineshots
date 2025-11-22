@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Twineshots - Careers</title>
+    <link rel="icon" href="images/twine.png" type="image/png">
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --dark: #172554;
+            --accent: #3b82f6;
+            --light: #f8fafc;
+        }
+
+        /* HERO */
+        .career-hero {
+            height: 90vh;
+            min-height: 650px;
+            background: linear-gradient(135deg, rgba(30,58,138,0.95), rgba(23,37,84,0.98)),
+                        url('images/career.jpg') center/cover no-repeat fixed;
+            display: flex;
+            align-items: center;
+            color: white;
+            position: relative;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, rgba(30,58,138,0.9), transparent 70%);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            text-align: center;
+        }
+        .hero-content h1 {
+            font-size: 72px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+        .hero-content p {
+            font-size: 22px;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            opacity: 0.95;
+        }
+        .hero-cta {
+            background: white;
+            color: var(--primary);
+            padding: 18px 48px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 19px;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            transition: all 0.4s;
+        }
+        .hero-cta:hover { transform: translateY(-5px); }
+
+        /* WHY JOIN US */
+        .why-join {
+            padding: 120px 40px;
+            background: white;
+            text-align: center;
+        }
+        .why-join h2 {
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 60px;
+        }
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .benefit-card {
+            padding: 40px 30px;
+            border-radius: 24px;
+            background: var(--light);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s;
+        }
+        .benefit-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(30,58,138,0.15);
+        }
+        .benefit-card ion-icon {
+            font-size: 56px;
+            color: var(--primary);
+            margin-bottom: 24px;
+        }
+        .benefit-card h3 {
+            font-size: 26px;
+            margin-bottom: 16px;
+            color: var(--dark);
+        }
+
+        /* OPEN POSITIONS */
+        .positions {
+            padding: 100px 40px;
+            background: #f1f5f9;
+        }
+        .positions h2 {
+            text-align: center;
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 80px;
+        }
+        .job-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .job-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s;
+        }
+        .job-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 70px rgba(30,58,138,0.2);
+        }
+        .job-header {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 32px;
+            text-align: center;
+        }
+        .job-header h3 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+        .job-header .location {
+            font-size: 16px;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .job-body {
+            padding: 32px;
+        }
+        .job-body ul {
+            list-style: none;
+            padding: 0;
+        }
+        .job-body li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e2e8f4;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 16px;
+        }
+        .job-body li:last-child { border-bottom: none; }
+        .job-body li ion-icon {
+            color: var(--accent);
+            font-size: 20px;
+        }
+        .apply-btn {
+            display: block;
+            margin-top: 24px;
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .apply-btn:hover { background: var(--dark); }
+
+        @media (max-width: 992px) {
+            .hero-content h1 { font-size: 56px; }
+            .why-join, .positions { padding: 80px 20px; }
+        }
+        @media (max-width: 600px) {
+            .hero-content h1 { font-size: 44px; }
+            .hero-content p { font-size: 18px; }
+            .job-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<!-- ==================== FIXED TOP NAVBAR (REEM STYLE) ==================== -->
+<header class="top-navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/twine.png" alt="Twineshots Logo" class="top-logo-img" />
+            </a>
+        </div>
+
+        <!-- Desktop Nav -->
+        <nav class="nav desktop-nav">
+            <ul>
+                <li><a href="index.html"><ion-icon name="home-outline"></ion-icon><span>Home</span></a></li>
+                <li><a href="gallery.html"><ion-icon name="images-outline"></ion-icon><span>Gallery</span></a></li>
+                <li><a href="team.html"><ion-icon name="people-outline"></ion-icon><span>Our Team</span></a></li>
+                <li><a href="info.html"><ion-icon name="information-circle-outline"></ion-icon><span>Info</span></a></li>
+                <li><a href="contact.html"><ion-icon name="call-outline"></ion-icon><span>Contact Us</span></a></li>
+                <li class="active"><a href="career.html"><ion-icon name="briefcase-outline"></ion-icon><span>Careers</span></a></li>
+            </ul>
+        </nav>
+
+        <div class="social-top">
+            <a href="https://www.instagram.com/twineshots?r=nametag" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a>
+            <a href="https://www.youtube.com/channel/UC6C1Alg0wFA7QTeHXMPZZiQ" target="_blank"><ion-icon name="logo-youtube"></ion-icon></a>
+            <a href="https://twitter.com/twineshots" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a>
+            <a href="https://www.facebook.com/pg/twineshots/posts/" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
+        </div>
+
+        <!-- Mobile Hamburger -->
+        <div class="hamburger" id="hamburger">
+            <ion-icon name="menu-outline"></ion-icon>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <img src="images/twine.png" alt="Logo" class="mobile-logo">
+            <ion-icon name="close-outline" id="closeMenu"></ion-icon>
+        </div>
+        <ul>
+            <li><a href="index.html"><ion-icon name="home-outline"></ion-icon> Home</a></li>
+            <li><a href="gallery.html"><ion-icon name="images-outline"></ion-icon> Gallery</a></li>
+            <li><a href="team.html"><ion-icon name="people-outline"></ion-icon> Our Team</a></li>
+            <li><a href="info.html"><ion-icon name="information-circle-outline"></ion-icon> Info</a></li>
+            <li><a href="contact.html"><ion-icon name="call-outline"></ion-icon> Contact Us</a></li>
+            <li class="active"><a href="career.html"><ion-icon name="briefcase-outline"></ion-icon> Careers</a></li>
+        </ul>
+        <div class="mobile-social">
+            <a href="https://www.instagram.com/twineshots?r=nametag" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a>
+            <a href="https://www.youtube.com/channel/UC6C1Alg0wFA7QTeHXMPZZiQ" target="_blank"><ion-icon name="logo-youtube"></ion-icon></a>
+            <a href="https://twitter.com/twineshots" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a>
+            <a href="https://www.facebook.com/pg/twineshots/posts/" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
+        </div>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="career-hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1>Join Our Creative Family</h1>
+        <p>At Twineshots, we don’t just take photos — we create art, tell stories, and preserve emotions. Be part of a passionate team that turns moments into lifelong memories.</p>
+        <a href="#positions" class="hero-cta">Explore Open Roles</a>
+    </div>
+</section>
+
+<!-- WHY JOIN US -->
+<section class="why-join">
+    <h2>Why Work With Us?</h2>
+    <div class="benefits-grid">
+        <div class="benefit-card">
+            <ion-icon name="camera-outline"></ion-icon>
+            <h3>Creative Freedom</h3>
+            <p>Work on diverse, high-impact projects — weddings, corporate shoots, fashion, documentaries — and express your unique style.</p>
+        </div>
+        <div class="benefit-card">
+            <ion-icon name="trending-up-outline"></ion-icon>
+            <h3>Career Growth</h3>
+            <p>Continuous training, mentorship from senior creatives, and clear paths to leadership roles.</p>
+        </div>
+        <div class="benefit-card">
+            <ion-icon name="cash-outline"></ion-icon>
+            <h3>Competitive Pay</h3>
+            <p>Above-industry salaries, performance bonuses, and paid creative leave.</p>
+        </div>
+        <div class="benefit-card">
+            <ion-icon name="people-outline"></ion-icon>
+            <h3>Amazing Team</h3>
+            <p>Join a fun, supportive, and highly skilled team that feels like family.</p>
+        </div>
+        <div class="benefit-card">
+            <ion-icon name="medal-outline"></ion-icon>
+            <h3>Top-Tier Gear</h3>
+            <p>Access to the latest Canon, Sony, DJI drones, and Profoto lighting kits.</p>
+        </div>
+        <div class="benefit-card">
+            <ion-icon name="heart-outline"></ion-icon>
+            <h3>Work That Matters</h3>
+            <p>Capture love, joy, success, and history — your work will be cherished for generations.</p>
+        </div>
+    </div>
+</section>
+
+<!-- OPEN POSITIONS -->
+<section class="positions" id="positions">
+    <h2>Open Positions</h2>
+    <div class="job-grid">
+
+        <div class="job-card">
+            <div class="job-header">
+                <h3>Lead Photographer</h3>
+                <div class="location"><ion-icon name="location-outline"></ion-icon> Kampala, Uganda</div>
+            </div>
+            <div class="job-body">
+                <ul>
+                    <li><ion-icon name="checkmark-circle-outline"></ion-icon> 5+ years professional photography experience</li>
+                    <li><ion-icon name="checkmark-circle-outline"></ion-icon> Expert in wedding & event coverage</li>
+                    <li><ion-icon name="checkmark-circle-outline"></ion-icon> Advanced Lightroom & Photoshop skills</li>
+                    <li><ion-icon name="checkmark-circle-outline"></ion-icon> Strong client communication & leadership</li>
+                    <li><ion-icon name="checkmark-circle-outline"></ion-icon> Valid driver’s license</li>
+                </ul>
+                <a href="mailto:ask@twineshots.com?subject=Application: Lead Photographer" class="apply-btn">Apply Now</a>
+            </div>
+        </div>
+
+        <div class="job-card">
+            <div class="job-header">
+                <h3>Videographer & Editor</h3>
+                <div class="location"><ion-icon name="location-outline"></ion-icon> Kampala, Uganda</div>
+            </div>
+            <div class="job-body">
+                <ul>
+                    <li><ion-icon name="checkmark-circle-outline"></ion-icon> 3+ years in cinematic wedding & corporate video</li>
+                    <li><ion-icon name="checkmark-circle-outline"></ion-icon> Expert in Premiere Pro, DaVinci Resolve</li>
+                    <li><ion-icon name="checkmark-circle-outline"></ion-icon> Drone pilot license is a plus</li>
+                    <li><ion-icon name="checkmark-circle-outline"></ion-icon> Color grading & sound design skills</li>
+                    <li><ion-icon name="checkmark-circle-outline"></ion-icon> Portfolio of cinematic highlight reels</li>
+                </ul>
+                <a href="mailto:ask@twineshots.com?subject=Application: Videographer & Editor" class="apply-btn">Apply Now</a>
+            </div>
+        </div>
+
+        <div class="job-card">
+            <div class="job-header">
+                <h3>Photo/Video Assistant</h3>
+                <div class="location"><ion-icon name="location-outline"></ion-icon> Kampala, Uganda</div>
+            </div>
+            <div class="job-body">
+                <ul>
+                    <li><ion-icon name="checkmark-circle-outline"></ion-icon> Passionate about photography & video</li>
+                    <li><ion-icon name="checkmark-circle-outline"></ion-icon> Basic knowledge of camera gear & lighting</li>
+                    <li><ion-icon name="checkmark-circle-outline"></ion-icon> Reliable, punctual, and great with clients</li>
+                    <li><ion-icon name="checkmark-circle-outline"></ion-icon> Eager to learn and grow fast</li>
+                    <li><ion-icon name="checkmark-circle-outline"></ion-icon> Full-time availability (weekends included)</li>
+                </ul>
+                <a href="mailto:ask@twineshots.com?subject=Application: Photo/Video Assistant" class="apply-btn">Apply Now</a>
+            </div>
+        </div>
+
+        <div class="job-card">
+            <div class="job-header">
+                <h3>Retoucher & Album Designer</h3>
+                <div class="location"><ion-icon name="location-outline"></ion-icon> Kampala or Remote</div>
+            </div>
+            <div class="job-body">
+                <ul>
+                    <li><ion-icon name="checkmark-circle-outline"></ion-icon> Expert in Photoshop & Lightroom</li>
+                    <li><ion-icon name="checkmark-circle-outline"></ion-icon> Experience designing luxury wedding albums</li>
+                    <li><ion-icon name="checkmark-circle-outline"></ion-icon> Eye for color, skin tones, and detail</li>
+                    <li><ion-icon name="checkmark-circle-outline"></ion-icon> Fast turnaround (48–72 hrs)</li>
+                    <li><ion-icon name="checkmark-circle-outline"></ion-icon> Remote-friendly position</li>
+                </ul>
+                <a href="mailto:ask@twineshots.com?subject=Application: Retoucher & Album Designer" class="apply-btn">Apply Now</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- WhatsApp Float Button -->
+<div class="whatsapp-float" id="whatsappBtn">
+    <ion-icon name="logo-whatsapp"></ion-icon>
+</div>
+
+<!-- WhatsApp Modal -->
+<div class="whatsapp-modal" id="whatsappModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <ion-icon name="logo-whatsapp"></ion-icon>
+            <h3>Contact Us on WhatsApp</h3>
+            <span class="close" id="closeModal">×</span>
+        </div>
+        <p>Select a service center to start chatting:</p>
+        <div class="service-list">
+            <button class="service-btn" data-phone="256752969130"><ion-icon name="logo-whatsapp"></ion-icon> Twineshots Central Support</button>
+            <button class="service-btn" data-phone="256776699609"><ion-icon name="logo-whatsapp"></ion-icon> Twineshots Kampala Branch</button>
+            <button class="service-btn" data-phone="256700000003"><ion-icon name="logo-whatsapp"></ion-icon> Twineshots Makerere Branch</button>
+        </div>
+        <div class="powered-by">
+            <img src="images/cks.png" alt="CloudKing Systems" class="cks-logo" />
+            <span>Powered by</span> CLOUDKING SYSTEMS
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-col">
+            <h4>Twineshots</h4>
+            <p>We are your top photography company that understands how to capture long lasting memories with you.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <p>Email: ask@twineshots.com</p>
+            <p>Phone: +256752969130 / +256393228953</p>
+        </div>
+        <div class="footer-col">
+            <h4>Location</h4>
+            <p>Elements courts, alongside Makerere Kasubi road,<br>Room G001</p>
+        </div>
+        <div class="footer-col">
+            <h4>Follow Us</h4>
+            <div class="social-links">
+                <a href="https://www.instagram.com/twineshots?r=nametag"><ion-icon name="logo-instagram"></ion-icon></a>
+                <a href="https://www.facebook.com/pg/twineshots/posts/"><ion-icon name="logo-facebook"></ion-icon></a>
+                <a href="https://twitter.com/twineshots"><ion-icon name="logo-twitter"></ion-icon></a>
+                <a href="https://www.instagram.com/twineshots_studio?igsh=MjE2NmFmZzhlY3Rt&utm_source=qr"><ion-icon name="logo-instagram"></ion-icon></a>
+                <a href="https://www.youtube.com/channel/UC6C1Alg0wFA7QTeHXMPZZiQ"><ion-icon name="logo-youtube"></ion-icon></a>
+                <a href="https://www.tiktok.com/@twineshots?_t=8lt0P1lwB2U&_r=1"><ion-icon name="logo-tiktok"></ion-icon></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 Twineshots. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

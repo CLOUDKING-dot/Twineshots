@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Twineshots - Contact</title>
+    <link rel="icon" href="images/twine.png" type="image/png">
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --dark: #172554;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+        }
+
+        body { background: #f8fafc; font-family: 'Inter', sans-serif; }
+
+        /* Compact Hero */
+        .contact-hero {
+            height: 80vh;
+            min-height: 600px;
+            background: linear-gradient(rgba(30,58,138,0.92), rgba(23,37,84,0.96)),
+                        url('images/hero.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        .hero-content h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .hero-content p {
+            font-size: 20px;
+            max-width: 600px;
+            margin: 0 auto 32px;
+            opacity: 0.95;
+        }
+        .hero-cta {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 17px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .hero-cta:hover { transform: translateY(-3px); }
+
+        /* Compact Form Card */
+        .form-section {
+            margin: -80px auto 100px;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+        .form-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+        .form-header {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        .form-header h2 {
+            font-size: 36px;
+            margin-bottom: 8px;
+            color: white !important;
+        }
+        .form-header p {
+            font-size: 17px;
+            opacity: 0.9;
+        }
+
+        .form-body {
+            padding: 50px 60px;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .form-full { grid-column: 1 / -1; }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e2e8f4;
+            border-radius: 12px;
+            font-size: 16px;
+            background: var(--light);
+            transition: all 0.3s;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(30,58,138,0.1);
+        }
+        textarea { min-height: 130px; resize: vertical; }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 50px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 16px;
+            transition: all 0.3s;
+        }
+        .submit-btn:hover { transform: translateY(-2px); }
+
+        .message {
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 500;
+            margin-top: 16px;
+            display: none;
+        }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+
+        /* Compact Info Cards */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto 100px;
+            padding: 0 30px;
+        }
+        .info-card {
+            background: white;
+            padding: 32px 24px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        .info-card:hover { transform: translateY(-8px); }
+        .info-card ion-icon {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+        .info-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+        .info-card p { font-size: 15px; color: #555; line-height: 1.5; }
+
+        @media (max-width: 768px) {
+            .contact-hero { height: 70vh; }
+            .hero-content h1 { font-size: 44px; }
+            .hero-content p { font-size: 18px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-body { padding: 40px 30px; }
+            .form-section { margin: -60px 15px 80px; }
+        }
+        @media (max-width: 480px) {
+            .hero-content h1 { font-size: 38px; }
+            .form-header h2 { font-size: 30px; }
+            .info-grid { padding: 0 20px; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ==================== FIXED TOP NAVBAR (REEM STYLE) ==================== -->
+<header class="top-navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/twine.png" alt="Twineshots Logo" class="top-logo-img" />
+            </a>
+        </div>
+
+        <!-- Desktop Nav -->
+        <nav class="nav desktop-nav">
+            <ul>
+                <li><a href="index.html"><ion-icon name="home-outline"></ion-icon><span>Home</span></a></li>
+                <li><a href="gallery.html"><ion-icon name="images-outline"></ion-icon><span>Gallery</span></a></li>
+                <li><a href="team.html"><ion-icon name="people-outline"></ion-icon><span>Our Team</span></a></li>
+                <li><a href="info.html"><ion-icon name="information-circle-outline"></ion-icon><span>Info</span></a></li>
+                <li class="active"><a href="contact.html"><ion-icon name="call-outline"></ion-icon><span>Contact Us</span></a></li>
+                <li><a href="career.html"><ion-icon name="briefcase-outline"></ion-icon><span>Careers</span></a></li>
+            </ul>
+        </nav>
+
+        <div class="social-top">
+            <a href="https://www.instagram.com/twineshots?r=nametag" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a>
+            <a href="https://www.youtube.com/channel/UC6C1Alg0wFA7QTeHXMPZZiQ" target="_blank"><ion-icon name="logo-youtube"></ion-icon></a>
+            <a href="https://twitter.com/twineshots" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a>
+            <a href="https://www.facebook.com/pg/twineshots/posts/" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
+        </div>
+
+        <!-- Mobile Hamburger -->
+        <div class="hamburger" id="hamburger">
+            <ion-icon name="menu-outline"></ion-icon>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <img src="images/twine.png" alt="Logo" class="mobile-logo">
+            <ion-icon name="close-outline" id="closeMenu"></ion-icon>
+        </div>
+        <ul>
+            <li><a href="index.html"><ion-icon name="home-outline"></ion-icon> Home</a></li>
+            <li><a href="gallery.html"><ion-icon name="images-outline"></ion-icon> Gallery</a></li>
+            <li><a href="team.html"><ion-icon name="people-outline"></ion-icon> Our Team</a></li>
+            <li><a href="info.html"><ion-icon name="information-circle-outline"></ion-icon> Info</a></li>
+            <li class="active"><a href="contact.html"><ion-icon name="call-outline"></ion-icon> Contact Us</a></li>
+            <li><a href="career.html"><ion-icon name="briefcase-outline"></ion-icon> Careers</a></li>
+        </ul>
+        <div class="mobile-social">
+            <a href="https://www.instagram.com/twineshots?r=nametag" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a>
+            <a href="https://www.youtube.com/channel/UC6C1Alg0wFA7QTeHXMPZZiQ" target="_blank"><ion-icon name="logo-youtube"></ion-icon></a>
+            <a href="https://twitter.com/twineshots" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a>
+            <a href="https://www.facebook.com/pg/twineshots/posts/" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
+        </div>
+    </div>
+</header>
+
+<!-- COMPACT HERO -->
+<section class="contact-hero">
+    <div class="hero-content">
+        <h1>Get in Touch</h1>
+        <p>We’re ready to capture your special moments. Let’s start the conversation.</p>
+        <a href="#contact-form" class="hero-cta">Send Message</a>
+    </div>
+</section>
+
+<!-- COMPACT FORM -->
+<section class="form-section" id="contact-form">
+    <div class="form-card">
+        <div class="form-header">
+            <h2>Book Your Session</h2>
+            <p>Fill in your details — we reply within 2 hours</p>
+        </div>
+        <div class="form-body">
+            <form id="contactForm" action="https://formspree.io/f/xblrjwpz" method="POST" novalidate>
+                <div class="form-grid">
+                    <input type="text" name="first_name" placeholder="First Name" required>
+                    <input type="text" name="last_name" placeholder="Last Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="tel" name="phone" placeholder="Phone (+256...)" required>
+
+                    <select name="service" required>
+                        <option value="" disabled selected>Select Service</option>
+                        <option>Wedding</option>
+                        <option>Studio Portraits</option>
+                        <option>Corporate Event</option>
+                        <option>Birthday/Party</option>
+                        <option>Architectural</option>
+                        <option>Industrial</option>
+                    </select>
+
+                    <input type="text" name="venue" placeholder="Venue (optional)">
+                    <input type="date" name="event_date">
+                    <input type="text" name="city_state" placeholder="City/District">
+
+                    <textarea name="message" placeholder="Tell us about your event..." class="form-full" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Send Message</button>
+                <div id="successMsg" class="message success">Thank you! We'll contact you soon.</div>
+                <div id="errorMsg" class="message error">Please fix the errors above.</div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- COMPACT INFO CARDS -->
+<div class="info-grid">
+    <div class="info-card">
+        <ion-icon name="call-outline"></ion-icon>
+        <h3>Call Us</h3>
+        <p>+256 752 969 130<br>+256 393 228 953</p>
+    </div>
+    <div class="info-card">
+        <ion-icon name="mail-outline"></ion-icon>
+        <h3>Email</h3>
+        <p>ask@twineshots.com</p>
+    </div>
+    <div class="info-card">
+        <ion-icon name="location-outline"></ion-icon>
+        <h3>Location</h3>
+        <p>Elements Courts<br>Makerere-Kasubi Road<br>Room G001, Kampala</p>
+    </div>
+    <div class="info-card">
+        <ion-icon name="time-outline"></ion-icon>
+        <h3>Hours</h3>
+        <p>Mon–Sat: 8AM–6PM<br>Sunday: By Appointment</p>
+    </div>
+</div>
+
+<!-- WhatsApp Float Button -->
+<div class="whatsapp-float" id="whatsappBtn">
+    <ion-icon name="logo-whatsapp"></ion-icon>
+</div>
+
+<!-- WhatsApp Modal -->
+<div class="whatsapp-modal" id="whatsappModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <ion-icon name="logo-whatsapp"></ion-icon>
+            <h3>Contact Us on WhatsApp</h3>
+            <span class="close" id="closeModal">×</span>
+        </div>
+        <p>Select a service center to start chatting:</p>
+        <div class="service-list">
+            <button class="service-btn" data-phone="256752969130"><ion-icon name="logo-whatsapp"></ion-icon> Twineshots Central Support</button>
+            <button class="service-btn" data-phone="256776699609"><ion-icon name="logo-whatsapp"></ion-icon> Twineshots Kampala Branch</button>
+            <button class="service-btn" data-phone="256700000003"><ion-icon name="logo-whatsapp"></ion-icon> Twineshots Makerere Branch</button>
+        </div>
+        <div class="powered-by">
+            <img src="images/cks.png" alt="CloudKing Systems" class="cks-logo" />
+            <span>Powered by</span> CLOUDKING SYSTEMS
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-col">
+            <h4>Twineshots</h4>
+            <p>We are your top photography company that understands how to capture long lasting memories with you.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <p>Email: ask@twineshots.com</p>
+            <p>Phone: +256752969130 / +256393228953</p>
+        </div>
+        <div class="footer-col">
+            <h4>Location</h4>
+            <p>Elements courts, alongside Makerere Kasubi road,<br>Room G001</p>
+        </div>
+        <div class="footer-col">
+            <h4>Follow Us</h4>
+            <div class="social-links">
+                <a href="https://www.instagram.com/twineshots?r=nametag"><ion-icon name="logo-instagram"></ion-icon></a>
+                <a href="https://www.facebook.com/pg/twineshots/posts/"><ion-icon name="logo-facebook"></ion-icon></a>
+                <a href="https://twitter.com/twineshots"><ion-icon name="logo-twitter"></ion-icon></a>
+                <a href="https://www.instagram.com/twineshots_studio?igsh=MjE2NmFmZzhlY3Rt&utm_source=qr"><ion-icon name="logo-instagram"></ion-icon></a>
+                <a href="https://www.youtube.com/channel/UC6C1Alg0wFA7QTeHXMPZZiQ"><ion-icon name="logo-youtube"></ion-icon></a>
+                <a href="https://www.tiktok.com/@twineshots?_t=8lt0P1lwB2U&_r=1"><ion-icon name="logo-tiktok"></ion-icon></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 Twineshots. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+    const form = document.getElementById('contactForm');
+    const success = document.getElementById('successMsg');
+    const error = document.getElementById('errorMsg');
+
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        success.style.display = 'none';
+        error.style.display = 'none';
+
+        let valid = true;
+        form.querySelectorAll('[required]').forEach(field => {
+            if (!field.value.trim()) {
+                field.style.borderColor = '#ef4444';
+                valid = false;
+            } else {
+                field.style.borderColor = '#e2e8f4';
+            }
+        });
+
+        if (!valid) {
+            error.style.display = 'block';
+            return;
+        }
+
+        try {
+            const res = await fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (res.ok) {
+                success.style.display = 'block';
+                form.reset();
+            } else throw new Error();
+        } catch {
+            error.style.display = 'block';
+        }
+    });
+
+    // Smooth scroll
+    document.querySelector('.hero-cta').addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector('#contact-form').scrollIntoView({ behavior: 'smooth' });
+    });
+</script>
+</body>
+</html>

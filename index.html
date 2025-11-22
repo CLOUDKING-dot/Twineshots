@@ -4,58 +4,217 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Twineshots - Home</title>
-
-    <!-- Favicon -->
     <link rel="icon" href="images/twine.png" type="image/png">
-
     <link rel="stylesheet" href="styles.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Ionicons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <style>
+        :root {
+     --primary: #1e3a8a;
+     --dark: #172554;
+     --light-bg: #f8fafc;
+     --text: #1f2937;
+     --muted: #475569;
+ }
+
+ * { margin: 0; padding: 0; box-sizing: border-box; }
+ body { font-family: 'Inter', sans-serif; background: var(--light-bg); color: var(--text); line-height: 1.6; }
+
+ /* WHY CHOOSE US (unchanged) */
+ .why-choose { padding: 120px 40px; background: var(--light-bg); text-align: center; }
+ .why-choose h2 { font-size: 52px; font-weight: 800; margin-bottom: 24px; color: var(--primary); }
+ .why-choose > p { font-size: 20px; max-width: 800px; margin: 0 auto 60px; color: var(--muted); }
+ .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
+ .why-card { background: white; padding: 40px 30px; border-radius: 28px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); transition: all 0.4s ease; }
+ .why-card:hover { transform: translateY(-15px); box-shadow: 0 25px 60px rgba(30,58,138,0.15); }
+ .why-card ion-icon { font-size: 56px; color: var(--primary); margin-bottom: 20px; }
+ .why-card h3 { font-size: 26px; margin-bottom: 16px; color: var(--dark); }
+
+ /* LET'S CONNECT */
+ .lets-connect {
+     padding: 100px 40px;
+     background: white;
+     text-align: center;
+     border-radius: 40px;
+     margin: 0 40px 120px;
+     box-shadow: 0 25px 70px rgba(0,0,0,0.1);
+ }
+ .lets-connect h2 { font-size: 48px; color: var(--primary); margin-bottom: 20px; }
+ .lets-connect p { font-size: 18px; color: var(--muted); max-width: 700px; margin: 0 auto 30px; }
+ .connect-btn {
+     display: inline-block;
+     background: var(--primary);
+     color: white;
+     padding: 18px 50px;
+     border-radius: 50px;
+     font-size: 20px;
+     font-weight: 700;
+     text-decoration: none;
+     transition: all 0.4s ease;
+ }
+ .connect-btn:hover { background: var(--dark); transform: translateY(-5px); }
+
+ /* REVIEWS – SMALL, PROFESSIONAL 2×3 GRID (6 CARDS) */
+ .reviews {
+     padding: 140px 40px 120px;
+     background: var(--light-bg);
+ }
+ .reviews h2 {
+     text-align: center;
+     font-size: 48px;
+     margin-bottom: 80px;
+     color: var(--primary);
+ }
+ .reviews-grid {
+     display: grid;
+     grid-template-columns: repeat(3, 1fr);
+     gap: 32px;
+     max-width: 1300px;
+     margin: 0 auto;
+ }
+ .review-card {
+     background: white;
+     padding: 28px 20px;
+     border-radius: 24px;
+     box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+     text-align: center;
+     transition: all 0.4s ease;
+     height: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+ }
+ .review-card:hover {
+     transform: translateY(-12px);
+     box-shadow: 0 25px 60px rgba(30,58,138,0.18);
+ }
+ .review-img {
+     width: 78px;
+     height: 78px;
+     border-radius: 50%;
+     object-fit: cover;
+     margin-bottom: 16px;
+     border: 4px solid #e0e7ff;
+ }
+ .review-card h4 {
+     font-size: 18px;
+     margin: 0 0 6px;
+     color: var(--dark);
+     font-weight: 600;
+ }
+ .review-card .stars {
+     color: #fbbf24;
+     font-size: 22px;
+     margin-bottom: 12px;
+     letter-spacing: 2px;
+ }
+ .review-card p {
+     font-size: 14.5px;
+     color: var(--muted);
+     line-height: 1.6;
+     flex-grow: 1;
+ }
+
+ /* INSTAGRAM, VIDEO, LEARN MORE (unchanged) */
+ .instagram { padding: 100px 40px; background: var(--light-bg); }
+ .instagram h2 { text-align: center; font-size: 48px; margin-bottom: 60px; color: var(--primary); }
+ .insta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; max-width: 1400px; margin: 0 auto; }
+ .insta-post { border-radius: 24px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.1); transition: all 0.4s ease; }
+ .insta-post:hover { transform: translateY(-10px); box-shadow: 0 25px 60px rgba(0,0,0,0.18); }
+ .insta-post img, .insta-post iframe { width: 100%; height: 380px; object-fit: cover; display: block; border: none; }
+
+ .video-section { padding: 120px 40px; background: var(--light-bg); text-align: center; }
+ .video-section h2 { font-size: 52px; margin-bottom: 60px; color: var(--primary) !important; font-weight: 800; }
+ .video-frame { max-width: 1000px; margin: 0 auto; border-radius: 32px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.15); }
+
+ .learn-more { padding: 120px 40px; background: var(--light-bg); }
+ .learn-more h2 { text-align: center; font-size: 48px; margin-bottom: 80px; color: var(--primary); }
+ .learn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
+ .learn-card { position: relative; height: 420px; border-radius: 28px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
+ .learn-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+ .learn-overlay { position: absolute; inset: 0; background: linear-gradient(transparent 40%, rgba(30,58,138,0.95)); display: flex; flex-direction: column; justify-content: end; padding: 40px; color: white; }
+ .learn-card:hover img { transform: scale(1.1); }
+ .learn-overlay h3 { font-size: 32px; margin-bottom: 12px; }
+ .learn-overlay a { display: inline-block; margin-top: 16px; background: white; color: var(--primary); padding: 12px 32px; border-radius: 50px; text-decoration: none; font-weight: 600; }
+
+ /* RESPONSIVE – 2×3 on desktop → 2 columns on tablet → 1 on mobile */
+ @media (max-width: 1100px) {
+     .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+ }
+ @media (max-width: 640px) {
+     .reviews-grid { grid-template-columns: 1fr; gap: 24px; }
+     .review-card { padding: 24px 18px; }
+     .reviews h2, .why-choose h2, .instagram h2, .video-section h2, .learn-more h2 { font-size: 40px; }
+     .lets-connect { margin: 0 20px 100px; border-radius: 32px; }
+ }
+    </style>
 </head>
 <body>
-<div class="container">
-    <!-- Sidebar -->
-    <aside class="sidebar">
+
+<!-- ==================== FIXED TOP NAVBAR (REEM STYLE) ==================== -->
+<header class="top-navbar">
+    <div class="nav-container">
         <div class="logo">
             <a href="index.html">
-                <img src="images/twine.png" alt="Twineshots Logo" class="sidebar-logo-img" />
+                <img src="images/twine.png" alt="Twineshots Logo" class="top-logo-img" />
             </a>
         </div>
-        <nav class="nav">
+
+        <!-- Desktop Nav -->
+        <nav class="nav desktop-nav">
             <ul>
-                <li class="active">
-                    <ion-icon name="home-outline"></ion-icon>
-                    <span>Home</span>
-                </li>
-                <li>
-                    <ion-icon name="pricetags-outline"></ion-icon>
-                    <span>Packages</span>
-                </li>
-                <li>
-                    <ion-icon name="images-outline"></ion-icon>
-                    <span>Gallery</span>
-                </li>
-                <li>
-                    <ion-icon name="call-outline"></ion-icon>
-                    <span>Contact Us</span>
-                </li>
-                <li>
-                    <ion-icon name="information-circle-outline"></ion-icon>
-                    <span>About</span>
-                </li>
-                <li>
-                    <ion-icon name="briefcase-outline"></ion-icon>
-                    <span>Careers</span>
-                </li>
+                <li class="active"><a href="index.html"><ion-icon name="home-outline"></ion-icon><span>Home</span></a></li>
+                <li><a href="gallery.html"><ion-icon name="images-outline"></ion-icon><span>Gallery</span></a></li>
+                <li><a href="team.html"><ion-icon name="people-outline"></ion-icon><span>Our Team</span></a></li>
+                <li><a href="info.html"><ion-icon name="information-circle-outline"></ion-icon><span>Info</span></a></li>
+                <li><a href="contact.html"><ion-icon name="call-outline"></ion-icon><span>Contact Us</span></a></li>
+                <li><a href="career.html"><ion-icon name="briefcase-outline"></ion-icon><span>Careers</span></a></li>
             </ul>
         </nav>
-    </aside>
 
-    <!-- Main Content -->
+        <div class="social-top">
+            <a href="https://www.instagram.com/twineshots?r=nametag" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a>
+            <a href="https://www.youtube.com/channel/UC6C1Alg0wFA7QTeHXMPZZiQ" target="_blank"><ion-icon name="logo-youtube"></ion-icon></a>
+            <a href="https://twitter.com/twineshots" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a>
+            <a href="https://www.facebook.com/pg/twineshots/posts/" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
+        </div>
+
+        <!-- Mobile Hamburger -->
+        <div class="hamburger" id="hamburger">
+            <ion-icon name="menu-outline"></ion-icon>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <img src="images/twine.png" alt="Logo" class="mobile-logo">
+            <ion-icon name="close-outline" id="closeMenu"></ion-icon>
+        </div>
+        <ul>
+            <li class="active"><a href="index.html"><ion-icon name="home-outline"></ion-icon> Home</a></li>
+            <li><a href="gallery.html"><ion-icon name="images-outline"></ion-icon> Gallery</a></li>
+            <li><a href="team.html"><ion-icon name="people-outline"></ion-icon> Our Team</a></li>
+            <li><a href="info.html"><ion-icon name="information-circle-outline"></ion-icon> Info</a></li>
+            <li><a href="contact.html"><ion-icon name="call-outline"></ion-icon> Contact Us</a></li>
+            <li><a href="career.html"><ion-icon name="briefcase-outline"></ion-icon> Careers</a></li>
+        </ul>
+        <div class="mobile-social">
+            <a href="https://www.instagram.com/twineshots?r=nametag" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a>
+            <a href="https://www.youtube.com/channel/UC6C1Alg0wFA7QTeHXMPZZiQ" target="_blank"><ion-icon name="logo-youtube"></ion-icon></a>
+            <a href="https://twitter.com/twineshots" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a>
+            <a href="https://www.facebook.com/pg/twineshots/posts/" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content Wrapper -->
+<div class="main-wrapper">
     <main class="main-content">
-        <!-- Hero Banner (Compact Cinematic Slider) -->
+
+        <!-- Hero Banner (UNCHANGED - Cinematic Slider) -->
         <section class="hero-banner">
             <div class="hero-bg" id="heroBg"></div>
 
@@ -68,7 +227,6 @@
 
             <div class="category-slider">
                 <div class="slider-track" id="sliderTrack">
-                    <!-- Slides will be duplicated by JS -->
                     <div class="slide-card active" data-bg="images/1.jpg" data-title="Nature" data-desc="Experience the raw beauty of the world through our Nature photography collections.">
                         <div class="meta"><h4>Nature</h4><p>Capturing Earth’s untouched beauty</p></div>
                     </div>
@@ -88,267 +246,214 @@
             </div>
         </section>
 
-        <!-- Our Team -->
-        <section class="team-section">
-            <h2>Our Team</h2>
-            <div class="team-grid">
-                <div class="team-card">
-                    <img src="images/staff/16.JPG" alt="John Doe" />
-                    <div class="team-info">
-                        <h4>ATWIINE GILBERT</h4>
-                        <p>C.E.O</p>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <img src="images/staff/1.JPEG" alt="Sarah Lee" />
-                    <div class="team-info">
-                        <h4>Sarah</h4>
-                        <p>Creative Director</p>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <img src="images/staff/2.JPEG" alt="Alex Kim" />
-                    <div class="team-info">
-                        <h4>Alex</h4>
-                        <p>Videographer</p>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <img src="images/staff/3.JPEG" alt="Emma Rose" />
-                    <div class="team-info">
-                        <h4>Emma</h4>
-                        <p>Editor</p>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <img src="images/staff/4.JPEG" alt="John Doe" />
-                    <div class="team-info">
-                        <h4>Eric</h4>
-                        <p>Photographer</p>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <img src="images/staff/5.JPEG" alt="John Doe" />
-                    <div class="team-info">
-                        <h4>Trevor</h4>
-                        <p>Photographer</p>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <img src="images/staff/6.JPEG" alt="John Doe" />
-                    <div class="team-info">
-                        <h4>Chris</h4>
-                        <p>Photographer</p>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <img src="images/staff/7.JPEG" alt="John Doe" />
-                    <div class="team-info">
-                        <h4>Derrick</h4>
-                        <p>Photographer</p>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <img src="images/staff/8.JPEG" alt="John Doe" />
-                    <div class="team-info">
-                        <h4>Tracy</h4>
-                        <p>Photographer</p>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <img src="images/staff/9.JPEG" alt="John Doe" />
-                    <div class="team-info">
-                        <h4>Joshua</h4>
-                        <p>Videographer</p>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <img src="images/staff/10.JPEG" alt="John Doe" />
-                    <div class="team-info">
-                        <h4>Giovanni</h4>
-                        <p>Lead Videographer</p>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <img src="images/staff/11.JPEG" alt="John Doe" />
-                    <div class="team-info">
-                        <h4>Mercy</h4>
-                        <p>Lead Editor</p>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <img src="images/staff/12.JPEG" alt="John Doe" />
-                    <div class="team-info">
-                        <h4>Simon</h4>
-                        <p>Lead Photographer</p>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <img src="images/staff/13.JPEG" alt="John Doe" />
-                    <div class="team-info">
-                        <h4>Rodney</h4>
-                        <p>Editor</p>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <img src="images/staff/14.JPEG" alt="John Doe" />
-                    <div class="team-info">
-                        <h4>Angel</h4>
-                        <p>Secretary</p>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <img src="images/staff/15.JPEG" alt="John Doe" />
-                    <div class="team-info">
-                        <h4>Winfred</h4>
-                        <p>Editor</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Categories -->
         <section class="categories-section">
             <h2>Categories</h2>
             <div class="categories-scroll">
-                <div class="category-card" style="--gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%)">
-                    <div class="category-icon">Weddings</div>
-                    <p>Weddings</p>
-                </div>
-                <div class="category-card" style="--gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%)">
-                    <div class="category-icon">Nature</div>
-                    <p>Nature</p>
-                </div>
-                <div class="category-card" style="--gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)">
-                    <div class="category-icon">Journalism</div>
-                    <p>Journalism</p>
-                </div>
-                <div class="category-card" style="--gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)">
-                    <div class="category-icon">Party</div>
-                    <p>Party</p>
-                </div>
-                <div class="category-card" style="--gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%)">
-                    <div class="category-icon">Portraits</div>
-                    <p>Portraits</p>
-                </div>
-                <div class="category-card" style="--gradient: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)">
-                    <div class="category-icon">Events</div>
-                    <p>Events</p>
-                </div>
+                <div class="category-card" style="--gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"><div class="category-icon">Weddings</div><p>Weddings</p></div>
+                <div class="category-card" style="--gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"><div class="category-icon">Nature</div><p>Nature</p></div>
+                <div class="category-card" style="--gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"><div class="category-icon">Journalism</div><p>Journalism</p></div>
+                <div class="category-card" style="--gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)"><div class="category-icon">Party</div><p>Party</p></div>
+                <div class="category-card" style="--gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%)"><div class="category-icon">Portraits</div><p>Portraits</p></div>
+                <div class="category-card" style="--gradient: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)"><div class="category-icon">Events</div><p>Events</p></div>
             </div>
         </section>
 
+<!-- NEW: WHY CHOOSE US -->
+<section class="why-choose">
+    <h2>Why Choose Twineshots?</h2>
+    <p>We don’t just take photos — we preserve emotions, tell stories, and create art that lasts generations.</p>
+    <div class="why-grid">
+        <div class="why-card">
+            <ion-icon name="heart-outline"></ion-icon>
+            <h3>Passion-Driven</h3>
+            <p>We love what we do — every click comes from the heart.</p>
+        </div>
+        <div class="why-card">
+            <ion-icon name="diamond-outline"></ion-icon>
+            <h3>Premium Quality</h3>
+            <p>State-of-the-art gear, expert editing, flawless delivery.</p>
+        </div>
+        <div class="why-card">
+            <ion-icon name="time-outline"></ion-icon>
+            <h3>Fast & Reliable</h3>
+            <p>Sneak peeks in 24hrs. Full gallery in 2–4 weeks.</p>
+        </div>
+        <div class="why-card">
+            <ion-icon name="people-outline"></ion-icon>
+            <h3>Client-First</h3>
+            <p>Personalized service, clear communication, zero stress.</p>
+        </div>
+    </div>
+</section>
         <!-- Showcase -->
         <section class="showcase-section">
             <h2>Showcase</h2>
             <div class="showcase-grid">
-                <div class="showcase-card">
-                    <img src="images/6.jpg" alt="Wedding" />
-                    <div class="showcase-overlay">
-                        <h3>Elegant Alpine Wedding</h3>
-                        <p>Captured at Serena</p>
+                <div class="showcase-card"><img src="images/6.jpg" alt="Wedding"><div class="showcase-overlay"><h3>Elegant Alpine Wedding</h3><p>Captured at Serena</p></div></div>
+                <div class="showcase-card"><img src="images/7.jpg" alt="Celebration"><div class="showcase-overlay"><h3>Northern Lights</h3><p>Kavule, 2024</p></div></div>
+                <div class="showcase-card"><img src="images/8.jpg" alt="Food"><div class="showcase-overlay"><h3>Jubilation</h3><p>Documentary Series</p></div></div>
+                <div class="showcase-card"><img src="images/9.jpg" alt="Party"><div class="showcase-overlay"><h3>Neon Nights</h3><p>Annual Gala 2025</p></div></div>
+                <div class="showcase-card"><img src="images/10.jpg" alt="Party"><div class="showcase-overlay"><h3>Kukyala</h3><p>August 2025</p></div></div>
+                <div class="showcase-card"><img src="images/11.jpg" alt="Party"><div class="showcase-overlay"><h3>Introduction</h3><p>Mbarara</p></div></div>
+                <div class="showcase-card"><img src="images/12.png" alt="Party"><div class="showcase-overlay"><h3>Campaign</h3><p>Masaka</p></div></div>
+                <div class="showcase-card"><img src="images/14.jpg" alt="Party"><div class="showcase-overlay"><h3>Reception Nights</h3><p>Kampala</p></div></div>
+                <div class="showcase-card"><img src="images/15.jpg" alt="Party"><div class="showcase-overlay"><h3>Mass</h3><p>Easters</p></div></div>
+                <div class="showcase-card"><img src="images/16.png" alt="Party"><div class="showcase-overlay"><h3>Evers</h3><p>Entebbe</p></div></div>
+                <div class="showcase-card"><img src="images/17.jpg" alt="Party"><div class="showcase-overlay"><h3>Wedding</h3><p>Nakawa</p></div></div>
+            </div>
+        </section>
+
+        <!-- Partners -->
+        <br><br><h2>Partners we work with</h2><br>
+        <div class="partners-only">
+            <div class="partners-logos">
+                <a href="https://cloudking.systems" target="_blank"><img src="images/cks.png" alt="CloudKing Systems" /></a>
+                <a href="#" target="_blank"><img src="images/partners/Position.png" alt="Partner" /></a>
+                <a href="#" target="_blank"><img src="images/partners/20tents.jpg" alt="Partner" /></a>
+                <a href="#" target="_blank"><img src="images/partners/Sua.jpg" alt="Partner" /></a>
+                <a href="#" target="_blank"><img src="images/partners/Bni.png" alt="Partner" /></a>
+                <a href="#" target="_blank"><img src="images/partners/stuart.PNG" alt="Partner" /></a>
+                <a href="#" target="_blank"><img src="images/partners/Croplife.PNG" alt="Partner" /></a>
+                <a href="#" target="_blank"><img src="images/partners/Exceed.png" alt="Partner" /></a>
+                <a href="#" target="_blank"><img src="images/partners/itech.PNG" alt="Partner" /></a>
+                <a href="#" target="_blank"><img src="images/partners/Leap.png" alt="Partner" /></a>
+                <a href="#" target="_blank"><img src="images/partners/Makerere.png" alt="Partner" /></a>
+                <a href="#" target="_blank"><img src="images/partners/olink.PNG" alt="Partner" /></a>
+                <a href="#" target="_blank"><img src="images/partners/Shake.png" alt="Partner" /></a>
+                <a href="#" target="_blank"><img src="images/partners/Shuttle.PNG" alt="Partner" /></a>
+                <a href="#" target="_blank"><img src="images/partners/Sprout.png" alt="Partner" /></a>
+                <a href="#" target="_blank"><img src="images/partners/Tents.png" alt="Partner" /></a>
+                <a href="#" target="_blank"><img src="images/partners/Xtent.JPEG" alt="Partner" /></a>
+                <a href="#" target="_blank"><img src="images/partners/shop.JPEG" alt="Partner" /></a>
+            </div>
+        </div>
+
+
+
+<!-- NEW: LET'S CONNECT -->
+<section class="lets-connect">
+    <h2>Ready to Create Something Beautiful?</h2>
+    <p>Whether it’s your wedding, corporate event, or personal portrait — we’re here to make it unforgettable.</p>
+    <a href="contact.html" class="connect-btn">Let’s Work Together</a>
+</section>
+
+<!-- NEW: REVIEWS -->
+        <section class="reviews">
+            <h2>What Our Clients Say</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <img src="images/reviews/1.jpg" alt="Sarah" class="review-img">
+                    <div class="review-content">
+                        <h4>Sarah & Joshua</h4>
+                        <div class="stars">★★★★★</div>
+                        <p>“Best wedding photographers ever! Captured every moment perfectly.”</p>
                     </div>
                 </div>
-                <div class="showcase-card">
-                    <img src="images/7.jpg" alt="Celebration" />
-                    <div class="showcase-overlay">
-                        <h3>Northern Lights</h3>
-                        <p>Kavule, 2024</p>
+                <div class="review-card">
+                    <img src="images/reviews/2.jpg" alt="David" class="review-img">
+                    <div class="review-content">
+                        <h4>David – CEO, TechCorp</h4>
+                        <div class="stars">★★★★★</div>
+                        <p>“Professional, creative, and delivered beyond expectations.”</p>
                     </div>
                 </div>
-                <div class="showcase-card">
-                    <img src="images/8.jpg" alt="Food" />
-                    <div class="showcase-overlay">
-                        <h3>Jubilation</h3>
-                        <p>Documentary Series</p>
+                <div class="review-card">
+                    <img src="images/reviews/3.jpg" alt="Aisha" class="review-img">
+                    <div class="review-content">
+                        <h4>Aisha & Mark</h4>
+                        <div class="stars">★★★★★</div>
+                        <p>“Our photos are pure magic. Thank you for making our day eternal.”</p>
                     </div>
                 </div>
-                <div class="showcase-card">
-                    <img src="images/9.jpg" alt="Party" />
-                    <div class="showcase-overlay">
-                        <h3>Neon Nights</h3>
-                        <p>Annual Gala 2025</p>
+                <div class="review-card">
+                    <img src="images/reviews/4.jpg" alt="Grace" class="review-img">
+                    <div class="review-content">
+                        <h4>Grace – Bride 2025</h4>
+                        <div class="stars">★★★★★</div>
+                        <p>“Made us feel so comfortable. The results? Absolutely stunning!”</p>
                     </div>
                 </div>
-                <div class="showcase-card">
-                    <img src="images/10.jpg" alt="Party" />
-                    <div class="showcase-overlay">
-                        <h3>Kukyala</h3>
-                        <p>August 2025</p>
+                <div class="review-card">
+                    <img src="images/reviews/5.jpg" alt="Michael" class="review-img">
+                    <div class="review-content">
+                        <h4>Michael & Linda</h4>
+                        <div class="stars">★★★★★</div>
+                        <p>“Flawless from start to finish. Highly recommend!”</p>
                     </div>
                 </div>
-                <div class="showcase-card">
-                    <img src="images/11.jpg" alt="Party" />
-                    <div class="showcase-overlay">
-                        <h3>Introduction</h3>
-                        <p>Mbarara</p>
-                    </div>
-                </div>
-                <div class="showcase-card">
-                    <img src="images/12.png" alt="Party" />
-                    <div class="showcase-overlay">
-                        <h3>Campaign</h3>
-                        <p>Masaka</p>
-                    </div>
-                </div>
-                <div class="showcase-card">
-                    <img src="images/14.jpg" alt="Party" />
-                    <div class="showcase-overlay">
-                        <h3>Reception Nights</h3>
-                        <p>Kampala</p>
-                    </div>
-                </div>
-                <div class="showcase-card">
-                    <img src="images/15.jpg" alt="Party" />
-                    <div class="showcase-overlay">
-                        <h3>Mass</h3>
-                        <p>Easters</p>
-                    </div>
-                </div>
-                <div class="showcase-card">
-                    <img src="images/16.png" alt="Party" />
-                    <div class="showcase-overlay">
-                        <h3>Evers</h3>
-                        <p>Entebbe</p>
-                    </div>
-                </div>
-                <div class="showcase-card">
-                    <img src="images/17.jpg" alt="Party" />
-                    <div class="showcase-overlay">
-                        <h3>Wedding</h3>
-                        <p>Nakawa</p>
+                <div class="review-card">
+                    <img src="images/reviews/6.jpg" alt="Esther" class="review-img">
+                    <div class="review-content">
+                        <h4>Esther – Event Planner</h4>
+                        <div class="stars">★★★★★</div>
+                        <p>“The best team I’ve worked with. On time, creative, amazing!”</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Partners Only -->
-        <div class="partners-only">
-            <div class="partners-logos">
-                <a href="https://cloudking.systems" target="_blank"><img src="images/cks.png" alt="CloudKing Systems" /></a>
-                <a href="https://partner2.com" target="_blank"><img src="images/partners/Position.png" alt="Partner 2" /></a>
-                <a href="https://partner3.com" target="_blank"><img src="images/partners/20tents.jpg" alt="Partner 3" /></a>
-                <a href="https://partner4.com" target="_blank"><img src="images/partners/Sua.jpg" alt="Partner 4" /></a>
-                <a href="https://partner5.com" target="_blank"><img src="images/partners/Bni.png" alt="Partner 5" /></a>
-                <a href="https://partner6.com" target="_blank"><img src="images/partners/stuart.PNG" alt="Partner 6" /></a>
-                <a href="https://partner7.com" target="_blank"><img src="images/partners/Croplife.PNG" alt="Partner 7" /></a>
-                <a href="https://partner8.com" target="_blank"><img src="images/partners/Exceed.png" alt="Partner 8" /></a>
-                <a href="https://partner8.com" target="_blank"><img src="images/partners/itech.PNG" alt="Partner 8" /></a>
-                <a href="https://partner8.com" target="_blank"><img src="images/partners/Leap.png" alt="Partner 8" /></a>
-                <a href="https://partner8.com" target="_blank"><img src="images/partners/Makerere.png" alt="Partner 8" /></a>
-                <a href="https://partner8.com" target="_blank"><img src="images/partners/olink.PNG" alt="Partner 8" /></a>
-                <a href="https://partner8.com" target="_blank"><img src="images/partners/Shake.png" alt="Partner 8" /></a>
-                <a href="https://partner8.com" target="_blank"><img src="images/partners/Shuttle.PNG" alt="Partner 8" /></a>
-                <a href="https://partner8.com" target="_blank"><img src="images/partners/Sprout.png" alt="Partner 8" /></a>
-                <a href="https://partner8.com" target="_blank"><img src="images/partners/Tents.png" alt="Partner 8" /></a>
-                <a href="https://partner8.com" target="_blank"><img src="images/partners/Xtent.JPEG" alt="Partner 8" /></a>
-                <a href="https://partner8.com" target="_blank"><img src="images/partners/shop.JPEG" alt="Partner 8" /></a>
+<!-- NEW: INSTAGRAM FEED -->
+<section class="instagram">
+    <h2>Follow Us @twineshots</h2>
+    <div class="insta-grid">
+        <div class="insta-post"><img src="images/insta/1.jpg" alt="Wedding"></div>
+        <div class="insta-post"><img src="images/insta/2.jpg" alt="Portrait"></div>
+        <div class="insta-post">
+            <iframe src="https://www.instagram.com/reel/DROyqwqCIj9/embed" allowfullscreen></iframe>
+        </div>
+        <div class="insta-post">
+            <iframe src="https://www.instagram.com/reel/DQ8iv8xCJvf/embed" allowfullscreen></iframe>
+        </div>
+        <div class="insta-post">
+            <iframe src="https://www.instagram.com/reel/DKhBFoEIGqP/embed" allowfullscreen></iframe>
+        </div>
+        <div class="insta-post"><img src="images/insta/3.jpg" alt="Couple"></div>
+    </div>
+</section>
+
+<!-- NEW: SEE OUR WORK VIDEO -->
+<section class="video-section">
+    <h2>See Our Work</h2>
+    <div class="video-frame">
+        <iframe width="100%" height="560" src="https://www.youtube.com/embed/eVmz1oUGgqw" title="Twineshots Showreel" frameborder="0" allowfullscreen></iframe>
+    </div>
+</section>
+
+<!-- NEW: LEARN MORE -->
+<section class="learn-more">
+    <h2>Discover More</h2>
+    <div class="learn-grid">
+        <div class="learn-card">
+            <img src="images/16.png" alt="About Us">
+            <div class="learn-overlay">
+                <h3>About Twineshots</h3>
+                <p>Our story, values, and mission</p>
+                <a href="info.html">Learn More</a>
             </div>
         </div>
+        <div class="learn-card">
+            <img src="images/12.png" alt="Our Team">
+            <div class="learn-overlay">
+                <h3>Meet Our Team</h3>
+                <p>Creative minds behind the lens</p>
+                <a href="team.html">Meet Us</a>
+            </div>
+        </div>
+        <div class="learn-card">
+            <img src="images/14.jpg" alt="Gallery">
+            <div class="learn-overlay">
+                <h3>Full Gallery</h3>
+                <p>Thousands of moments captured</p>
+                <a href="gallery.html">View Gallery</a>
+            </div>
+        </div>
+    </div>
+</section>
     </main>
 </div>
 
-<!-- Floating WhatsApp -->
+<!-- WhatsApp Float Button -->
 <div class="whatsapp-float" id="whatsappBtn">
     <ion-icon name="logo-whatsapp"></ion-icon>
 </div>
@@ -363,15 +468,9 @@
         </div>
         <p>Select a service center to start chatting:</p>
         <div class="service-list">
-            <button class="service-btn" data-phone="256752969130">
-                <ion-icon name="logo-whatsapp"></ion-icon> Twineshots Central Support
-            </button>
-            <button class="service-btn" data-phone="256776699609">
-                <ion-icon name="logo-whatsapp"></ion-icon> Twineshots Kampala Branch
-            </button>
-            <button class="service-btn" data-phone="256700000003">
-                <ion-icon name="logo-whatsapp"></ion-icon> Twineshots Makerere Branch
-            </button>
+            <button class="service-btn" data-phone="256752969130"><ion-icon name="logo-whatsapp"></ion-icon> Twineshots Central Support</button>
+            <button class="service-btn" data-phone="256776699609"><ion-icon name="logo-whatsapp"></ion-icon> Twineshots Kampala Branch</button>
+            <button class="service-btn" data-phone="256700000003"><ion-icon name="logo-whatsapp"></ion-icon> Twineshots Makerere Branch</button>
         </div>
         <div class="powered-by">
             <img src="images/cks.png" alt="CloudKing Systems" class="cks-logo" />
@@ -385,7 +484,7 @@
     <div class="footer-content">
         <div class="footer-col">
             <h4>Twineshots</h4>
-            <p>We are your top photographying company  that understands <br>how to capture long lasting memories with you.</p>
+            <p>We are your top photography company that understands how to capture long lasting memories with you.</p>
         </div>
         <div class="footer-col">
             <h4>Contact</h4>
@@ -394,7 +493,7 @@
         </div>
         <div class="footer-col">
             <h4>Location</h4>
-            <p>Elements courts, along side Makerere Kasubi road, <br>Room G001</p>
+            <p>Elements courts, alongside Makerere Kasubi road,<br>Room G001</p>
         </div>
         <div class="footer-col">
             <h4>Follow Us</h4>

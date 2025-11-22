@@ -105,3 +105,27 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+// Mobile Menu Toggle
+document.addEventListener("DOMContentLoaded", () => {
+    const hamburger = document.getElementById("hamburger");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const closeMenu = document.getElementById("closeMenu");
+
+    hamburger.addEventListener("click", () => {
+        mobileMenu.classList.add("active");
+    });
+
+    closeMenu.addEventListener("click", () => {
+        mobileMenu.classList.remove("active");
+    });
+
+    // Close when clicking outside
+    mobileMenu.addEventListener("click", (e) => {
+        if (e.target === mobileMenu) {
+            mobileMenu.classList.remove("active");
+        }
+    });
+
+    // Your existing WhatsApp + Slider code below...
+    // (keep everything you already have)
+});

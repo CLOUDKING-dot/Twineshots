@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Twineshots - Info</title>
+
+    <link rel="icon" href="images/twine.png" type="image/png">
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <style>
+        /* INFO PAGE SPECIFIC STYLES + ANIMATIONS */
+        .info-hero {
+            position: relative;
+            height: 80vh;
+            background: linear-gradient(rgba(30,58,138,0.85), rgba(30,58,138,0.9)), url('images/hero.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 80px;
+        }
+        .info-hero h1 {
+            font-size: 64px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s forwards 0.5s;
+        }
+        .info-hero p {
+            font-size: 22px;
+            max-width: 800px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s forwards 0.8s;
+        }
+
+        .section {
+            padding: 100px 40px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .section h2 {
+            font-size: 42px;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #1e3a8a;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .section h2::after {
+            content: '';
+            width: 100px;
+            height: 4px;
+            background: #1e3a8a;
+            display: block;
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+
+        .fade-in { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+        .slide-left { opacity: 0; transform: translateX(-60px); transition: all 0.9s ease; }
+        .slide-right { opacity: 0; transform: translateX(60px); transition: all 0.9s ease; }
+        .visible { opacity: 1 !important; transform: translateY(0) !important; transform: translateX(0) !important; }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .img-placeholder {
+            width: 100%;
+            height: 420px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .img-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .img-placeholder:hover img { transform: scale(1.08); }
+
+        .core-values {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .value-card {
+            background: #f8fafc;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-left: 5px solid #1e3a8a;
+        }
+        .value-card h3 {
+            color: #1e3a8a;
+            margin-bottom: 16px;
+            font-size: 22px;
+        }
+
+        .youtube-video {
+            width: 100%;
+            max-width: 1000px;
+            margin: 80px auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+
+        .why-choose {
+            background: linear-gradient(135deg, #1e3a8a 0%, #172554 100%);
+            color: white;
+            border-radius: 24px;
+            padding: 80px 60px;
+            text-align: center;
+        }
+        .why-choose .grid-2 {
+            text-align: left;
+        }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 992px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            .info-hero h1 { font-size: 48px; }
+            .info-hero p { font-size: 18px; }
+            .section { padding: 80px 20px; }
+        }
+        @media (max-width: 600px) {
+            .info-hero h1 { font-size: 38px; }
+            .section h2 { font-size: 32px; }
+        }
+        /* SERVICES GRID & CARD STYLING */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 32px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.service-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: all 0.4s ease;
+    border: 1px solid #e2e8f4;
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.service-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.service-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 25px 50px rgba(30,58,138,0.15);
+    border-color: #1e3a8a;
+}
+
+.service-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(30,58,138,0.1);
+    border-radius: 50%;
+    margin: 0 auto 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.service-icon ion-icon {
+    font-size: 36px;
+    color: #1e3a8a;
+}
+
+.service-card h3 {
+    font-size: 24px;
+    margin: 20px 0 16px;
+    color: #1e3a8a;
+}
+
+.service-card p {
+    font-size: 16.5px;
+    line-height: 1.8;
+    color: #444;
+}
+
+/* Make sure animation works */
+.fade-in { opacity: 0; transform: translateY(40px); }
+.visible { opacity: 1 !important; transform: translateY(0) !important; transition: all 0.9s ease; }
+    </style>
+</head>
+<body>
+
+<!-- SAME NAVBAR AS HOME PAGE -->
+<header class="top-navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <a href="index.html"><img src="images/twine.png" alt="Twineshots Logo" class="top-logo-img" /></a>
+        </div>
+        <nav class="nav desktop-nav">
+            <ul>
+                <li><a href="index.html"><ion-icon name="home-outline"></ion-icon><span>Home</span></a></li>
+                <li><a href="gallery.html"><ion-icon name="images-outline"></ion-icon><span>Gallery</span></a></li>
+                <li><a href="team.html"><ion-icon name="people-outline"></ion-icon><span>Our Team</span></a></li>
+                <li class="active"><a href="info.html"><ion-icon name="information-circle-outline"></ion-icon><span>Info</span></a></li>
+                <li><a href="contact.html"><ion-icon name="call-outline"></ion-icon><span>Contact Us</span></a></li>
+                <li><a href="career.html"><ion-icon name="briefcase-outline"></ion-icon><span>Careers</span></a></li>
+            </ul>
+        </nav>
+        <div class="social-top">
+            <a href="https://www.instagram.com/twineshots?r=nametag" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a>
+            <a href="https://www.youtube.com/channel/UC6C1Alg0wFA7QTeHXMPZZiQ" target="_blank"><ion-icon name="logo-youtube"></ion-icon></a>
+            <a href="https://twitter.com/twineshots" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a>
+            <a href="https://www.facebook.com/pg/twineshots/posts/" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
+        </div>
+        <div class="hamburger" id="hamburger"><ion-icon name="menu-outline"></ion-icon></div>
+    </div>
+    <!-- Mobile Menu (same as before) -->
+    <div class="mobile-menu" id="mobileMenu"> ... </div>
+</header>
+
+<!-- HERO -->
+<section class="info-hero">
+    <div>
+        <h1>Welcome TO TWINE SHOTS MEDIA SMC LTD.</h1>
+        <p>At Twine shots, we specialize in capturing life’s beautiful moments and turning them into cherished memories. With our passion for creating memories and keen eye for detail, we are dedicated to providing you with exceptional service and stunning visual content that will last a lifetime.</p>
+    </div>
+</section>
+
+<!-- MISSION & VISION -->
+<section class="section fade-in">
+    <h2 class="fade-in">Our Mission & Vision</h2>
+    <div class="grid-2">
+        <div class="slide-left">
+            <h3 style="color:#1e3a8a; font-size:28px; margin-bottom:20px;">Mission</h3>
+            <p style="font-size:18px; line-height:1.8; color:#444;">
+                Our mission is to capture real life’s precious moments through artful and exceptional photography and videography, preserving moments that evoke emotions and tell unique stories.
+            </p>
+        </div>
+        <div class="slide-right">
+            <h3 style="color:#1e3a8a; font-size:28px; margin-bottom:20px;">Vision</h3>
+            <p style="font-size:18px; line-height:1.8; color:#444;">
+                Our vision is to be the preferred choice for individuals, companies and businesses seeking top-quality photography and videography services, recognized for our creativity, flexibility, patience, professionalism, timely deliveries and ability to create timeless visual narratives.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT US + IMAGE -->
+<section class="section">
+    <h2 class="fade-in">About Us</h2>
+    <div class="grid-2">
+        <div class="fade-in">
+            <p style="font-size:18px; line-height:1.9; color:#444;">
+                At Twine shots media SMC Ltd, we are passionate about creating moments that last a lifetime. As a premier content creation company, we specialize in creating artful and exceptional photos and videos that tell stories, evoke emotions, and preserve memories.<br>
+                With a team of highly skilled and experienced photographers, videographers, directors, editors and cinematographers, we have established ourselves as a trusted brand name in the industry. Our commitment to excellence and our dedication to our craft are the driving forces behind our success. We believe that content creation is not just about taking pictures or recording videos; it’s about capturing the essence of a moment and transforming it into a work of art. We strive to go beyond the ordinary and deliver content that is unique, creative, and visually captivating.
+            </p>
+        </div>
+        <div class="img-placeholder slide-right">
+            <img src="images/services/team.jpg" alt="Twineshots Team">
+        </div>
+    </div>
+</section>
+
+<!-- CORE VALUES -->
+<section class="section">
+    <h2 class="fade-in">Core Values</h2>
+    <div class="core-values">
+        <div class="value-card fade-in"><h3>Creativity</h3><p>We value the power of imagination and strive to bring fresh perspectives and innovative ideas to every project. We embrace artistic expression and continuously push boundaries to deliver captivating and unique visuals.</p></div>
+        <div class="value-card fade-in"><h3>Excellence</h3><p>We are committed to delivering timely exceptional work in every aspect of our service. We set high standards for ourselves and go the extra mile to ensure our clients receive the highest quality of images and videos, attention to detail, and outstanding customer service.</p></div>
+        <div class="value-card fade-in"><h3>Integrity</h3><p>We conduct ourselves with utmost honesty, transparency, patience and professionalism. We prioritize open communication, respect client confidentiality, and uphold ethical practices in all our interactions. Trust and integrity form the foundation of our relationships with clients and partners.</p></div>
+        <div class="value-card fade-in"><h3>Passion</h3><p>Content creation is not just a job for us; it is our lifelong passion. We approach every project with enthusiasm, dedication, and a genuine love for capturing life’s beautiful moments. Our passion fuels our continuous growth and learning, as we constantly seek to improve our skills and stay updated with the latest trends and techniques.</p></div>
+        <div class="value-card fade-in"><h3>Collaboration</h3><p>We value teamwork and recognize the importance of collaborating with clients, partners, fellow team players in the industry and other creative professionals. By fostering a collaborative environment, we enhance our ability to understand and fulfil our clients’ vision, resulting in extraordinary photos and videos that exceed expectations.</p></div>
+        <div class="value-card fade-in"><h3>Client Focus</h3><p>Our clients are at the centre of everything we do. We actively listen to their needs, preferences, and ideas, tailoring our photo and video services to meet their unique requirements. We strive to provide an exceptional customer experience, ensuring their satisfaction and building long-term relationships.</p></div>
+    </div>
+</section>
+
+<!-- SERVICES OVERVIEW -->
+<!-- ========================================= -->
+<!-- EXPANDED SERVICES SECTION – FULL DETAILS -->
+<!-- ========================================= -->
+<section class="section" id="services">
+    <h2 class="fade-in">Our Services</h2>
+    <p style="text-align:center; max-width:900px; margin:0 auto 70px; font-size:19px; color:#555; line-height:1.8;">
+        We offer a complete range of professional photography and videography services tailored to individuals, couples, corporations, and industries.
+    </p>
+
+    <div class="services-grid">
+
+        <!-- 1. Weddings & Traditional Ceremonies -->
+        <div class="service-card fade-in">
+            <div class="service-icon"><ion-icon name="heart-outline"></ion-icon></div>
+            <h3>ARCHITECTURAL & INTERIOR PHOTOGRAPHY & VIDEOGRAPHY</h3>
+            <p>Companies in the real estate, construction, and hospitality sectors often require professional photography to showcase their properties, buildings, and interiors. Real estate photographers capture the aesthetics, design elements, and unique features of the spaces, emphasizing their beauty and functionality.</p>
+        </div>
+
+        <!-- 2. Events & Parties -->
+        <div class="service-card fade-in">
+            <div class="service-icon"><ion-icon name="balloon-outline"></ion-icon></div>
+            <h3>EVENTS COVERAGE</h3>
+            <p>Corporate events, such as conferences, meetings, workshops, seminars,  product launches, and award ceremonies, require professional photography and videography coverage. Event photographers and videographers capture key moments, guest speakers,  interactions, and the overall ambiance, creating a visual record of the event.</p>
+        </div>
+
+        <!-- 3. Corporate Events -->
+        <div class="service-card fade-in">
+            <div class="service-icon"><ion-icon name="business-outline"></ion-icon></div>
+            <h3>CORPORATE HEADSHOTS</h3>
+            <p>Team Photos and business portraits: These are professional portraits of individuals and teams, typically used for corporate profiles, websites, LinkedIn profiles, and other business-related purposes. Corporate headshots showcase professionalism, confidence, and personality</p>
+        </div>
+
+        <!-- 4. Architectural & Interior -->
+        <div class="service-card fade-in">
+            <div class="service-icon"><ion-icon name="home-outline"></ion-icon></div>
+            <h3>CORPORATE EVENTS PHOTOGRAPHY</h3>
+            <p>Corporate events, such as company parties, team- building activities, and corporate retreats require event photography and videography services. These photos capture the atmosphere, interactions, and moments of celebration, fostering a sense of community within the organization.</p>
+        </div>
+
+        <!-- 5. Corporate Headshots & Branding -->
+        <div class="service-card fade-in">
+            <div class="service-icon"><ion-icon name="camera-outline"></ion-icon></div>
+            <h3>INDUSTRIAL PHOTOGRAPHY</h3>
+            <p>Industries such as manufacturing, construction and energy often require industrial photography and videography to document processes, facilities, machinery, and infrastructure. These photos and videos are used for internal reports, presentations, marketing collateral, and industry publications.</p>
+        </div>
+
+        <!-- 6. Industrial & Infrastructure -->
+        <div class="service-card fade-in">
+            <div class="service-icon"><ion-icon name="construct-outline"></ion-icon></div>
+            <h3>EVENTS PHOTOGRAPHY</h3>
+            <p>From weddings, introductions, kukyaala and birthdays to corporate events and parties, we’ll be there to document every precious moment. We have the expertise to capture the ambiance, emotions, and highlights of your event, ensuring that no detail goes unnoticed</p>
+        </div>
+
+        <!-- 7. Product & Commercial -->
+        <div class="service-card fade-in">
+            <div class="service-icon"><ion-icon name="cube-outline"></ion-icon></div>
+            <h3>Product Photography & Commercial Shoots</h3>
+            <p>High-end product shots for e-commerce, billboards, catalogues, and social media. We handle jewellery, fashion, food & beverage, electronics, cosmetics — anything you sellable — with creative lighting and flawless retouching.</p>
+        </div>
+
+        <!-- 8. Documentary & Journalism -->
+        <div class="service-card fade-in">
+            <div class="service-icon"><ion-icon name="newspaper-outline"></ion-icon></div>
+            <h3>Documentary & Journalism Coverage</h3>
+            <p>Press conferences, NGO projects, community initiatives, human interest stories, and editorial assignments. We deliver powerful visual storytelling with sensitivity, speed, and journalistic integrity.</p>
+        </div>
+
+        <!-- 9. Video Production -->
+        <div class="service-card fade-in">
+            <div class="service-icon"><ion-icon name="videocam-outline"></ion-icon></div>
+            <h3>Professional Video Production</h3>
+            <p>Cinematic wedding films, corporate brand videos, promotional ads, testimonials, drone footage, event highlight reels, and YouTube content. Full script-to-screen service including directing, shooting, editing, color grading, and sound design.</p>
+        </div>
+    </div>
+</section>
+
+<!-- YOUTUBE SHOWREEL -->
+<div class="youtube-video fade-in">
+    <iframe width="100%" height="515" src="https://www.youtube.com/embed/vFg_Mzu834E" title="Twineshots Showreel" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<!-- WHY CHOOSE US -->
+<section class="section why-choose">
+    <h2 class="fade-in" style="color: white !important;">Why Choose Us?</h2>
+    <div class="grid-2">
+        <div class="fade-in">
+            <h3 style="font-size:28px; margin-bottom:20px;">Experience • Personalized • Quality</h3>
+            <p style="font-size:18px; line-height:1.9;">
+                <strong>EXPERIENCE:</strong> With 7 years of professional experience, we have honed our skills and techniques to deliver exceptional results. We have worked with diverse clients and subjects, giving us the versatility to meet your specific needs.<br>
+                <strong>PERSONALIZED APPROACH:</strong> We believe that every client is unique, and we tailor our services to match your vision and requirements. We take the time to understand your goals and preferences, ensuring that your photographs truly reflect your individuality.<br>
+                <strong>HIGH-QUALITY OUTPUT:</strong> We utilize state-of-the-art equipment and the latest editing techniques to produce images of the highest quality. Our commitment to excellence means that you will receive stunning photographs that surpass your expectations.<br>
+                <strong>PROFESSIONALISM:</strong> We pride ourselves on our professionalism and reliability. From prompt communication to timely delivery of the final images, we strive to provide you with a seamless and enjoyable photography experience
+            </p>
+        </div>
+        <div class="img-placeholder fade-in">
+            <img src="images/services/corporate-events.jpg" alt="Why Choose Twineshots">
+        </div>
+    </div>
+    <div style="text-align:center; margin-top:50px;">
+        <h2 style="font-size:36px;">Book a Session Today!</h2>
+        <p style="font-size:20px; margin:20px 0;">Whether you’re celebrating a special occasion, launching a new product, or simply want to capture the beauty of life, Twine shots is here to help. Contact us today to discuss your photography needs and let us create everlasting memories for you.</p>
+        <a href="contact.html" style="display:inline-block; background:white; color:#1e3a8a; padding:16px 40px; border-radius:50px; font-weight:600; font-size:18px; margin-top:20px; text-decoration:none;">Get In Touch</a>
+    </div>
+</section>
+
+<!-- WhatsApp Float Button -->
+<div class="whatsapp-float" id="whatsappBtn">
+    <ion-icon name="logo-whatsapp"></ion-icon>
+</div>
+
+<!-- WhatsApp Modal -->
+<div class="whatsapp-modal" id="whatsappModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <ion-icon name="logo-whatsapp"></ion-icon>
+            <h3>Contact Us on WhatsApp</h3>
+            <span class="close" id="closeModal">×</span>
+        </div>
+        <p>Select a service center to start chatting:</p>
+        <div class="service-list">
+            <button class="service-btn" data-phone="256752969130"><ion-icon name="logo-whatsapp"></ion-icon> Twineshots Central Support</button>
+            <button class="service-btn" data-phone="256776699609"><ion-icon name="logo-whatsapp"></ion-icon> Twineshots Kampala Branch</button>
+            <button class="service-btn" data-phone="256700000003"><ion-icon name="logo-whatsapp"></ion-icon> Twineshots Makerere Branch</button>
+        </div>
+        <div class="powered-by">
+            <img src="images/cks.png" alt="CloudKing Systems" class="cks-logo" />
+            <span>Powered by</span> CLOUDKING SYSTEMS
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-col">
+            <h4>Twineshots</h4>
+            <p>We are your top photography company that understands how to capture long lasting memories with you.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <p>Email: ask@twineshots.com</p>
+            <p>Phone: +256752969130 / +256393228953</p>
+        </div>
+        <div class="footer-col">
+            <h4>Location</h4>
+            <p>Elements courts, alongside Makerere Kasubi road,<br>Room G001</p>
+        </div>
+        <div class="footer-col">
+            <h4>Follow Us</h4>
+            <div class="social-links">
+                <a href="https://www.instagram.com/twineshots?r=nametag"><ion-icon name="logo-instagram"></ion-icon></a>
+                <a href="https://www.facebook.com/pg/twineshots/posts/"><ion-icon name="logo-facebook"></ion-icon></a>
+                <a href="https://twitter.com/twineshots"><ion-icon name="logo-twitter"></ion-icon></a>
+                <a href="https://www.instagram.com/twineshots_studio?igsh=MjE2NmFmZzhlY3Rt&utm_source=qr"><ion-icon name="logo-instagram"></ion-icon></a>
+                <a href="https://www.youtube.com/channel/UC6C1Alg0wFA7QTeHXMPZZiQ"><ion-icon name="logo-youtube"></ion-icon></a>
+                <a href="https://www.tiktok.com/@twineshots?_t=8lt0P1lwB2U&_r=1"><ion-icon name="logo-tiktok"></ion-icon></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 Twineshots. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+    // SCROLL ANIMATIONS
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in, .slide-left, .slide-right').forEach(el => {
+        observer.observe(el);
+    });
+    // Enhanced service cards animation
+const serviceObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.service-card').forEach(card => {
+    serviceObserver.observe(card);
+});
+
+    // Mobile menu & WhatsApp (from your script.js)
+    // ... keep your existing script.js code here
+</script>
+</body>
+</html>
