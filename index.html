@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Twineshots - Home</title>
+    <link rel="icon" href="images/twine.png" type="image/png">
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <style>
+        :root {
+     --primary: #1e3a8a;
+     --dark: #172554;
+     --light-bg: #f8fafc;
+     --text: #1f2937;
+     --muted: #475569;
+ }
+
+ * { margin: 0; padding: 0; box-sizing: border-box; }
+ body { font-family: 'Inter', sans-serif; background: var(--light-bg); color: var(--text); line-height: 1.6; }
+
+ /* WHY CHOOSE US (unchanged) */
+ .why-choose { padding: 120px 40px; background: var(--light-bg); text-align: center; }
+ .why-choose h2 { font-size: 52px; font-weight: 800; margin-bottom: 24px; color: #e50914; }
+ .why-choose > p { font-size: 20px; max-width: 800px; margin: 0 auto 60px; color: #010B13; }
+ .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
+ .why-card { background: white; padding: 40px 30px; border-radius: 28px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); transition: all 0.4s ease; }
+ .why-card:hover { transform: translateY(-15px); box-shadow: 0 25px 60px rgba(30,58,138,0.15); }
+ .why-card ion-icon { font-size: 56px; color: #010B13; margin-bottom: 20px; }
+ .why-card h3 { font-size: 26px; margin-bottom: 16px; color: #010B13; }
+
+ /* LET'S CONNECT */
+ .lets-connect {
+     padding: 100px 40px;
+     background: white;
+     text-align: center;
+     border-radius: 40px;
+     margin: 0 40px 120px;
+     box-shadow: 0 25px 70px rgba(0,0,0,0.1);
+ }
+ .lets-connect h2 { font-size: 48px; color: #e50914; margin-bottom: 20px; }
+ .lets-connect p { font-size: 18px; color: #010B13; max-width: 700px; margin: 0 auto 30px; }
+ .connect-btn {
+     display: inline-block;
+     background: #22C55E;
+     color: white;
+     padding: 18px 50px;
+     border-radius: 50px;
+     font-size: 20px;
+     font-weight: 700;
+     text-decoration: none;
+     transition: all 0.4s ease;
+ }
+ .connect-btn:hover { background: #16A34A; transform: translateY(-5px); }
+
+ /* REVIEWS – SMALL, PROFESSIONAL 2×3 GRID (6 CARDS) */
+ .reviews {
+     padding: 140px 40px 120px;
+     background: var(--light-bg);
+ }
+ .reviews h2 {
+     text-align: center;
+     font-size: 48px;
+     margin-bottom: 80px;
+     color: #e50914;
+ }
+ .reviews-grid {
+     display: grid;
+     grid-template-columns: repeat(3, 1fr);
+     gap: 32px;
+     max-width: 1300px;
+     margin: 0 auto;
+ }
+ .review-card {
+     background: white;
+     padding: 28px 20px;
+     border-radius: 24px;
+     box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+     text-align: center;
+     transition: all 0.4s ease;
+     height: 100%;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+ }
+ .review-card:hover {
+     transform: translateY(-12px);
+     box-shadow: 0 25px 60px rgba(30,58,138,0.18);
+ }
+ .review-img {
+     width: 78px;
+     height: 78px;
+     border-radius: 50%;
+     object-fit: cover;
+     margin-bottom: 16px;
+     border: 4px solid #e0e7ff;
+ }
+ .review-card h4 {
+     font-size: 18px;
+     margin: 0 0 6px;
+     color: #010B13;
+     font-weight: 600;
+ }
+ .review-card .stars {
+     color: #fbbf24;
+     font-size: 22px;
+     margin-bottom: 12px;
+     letter-spacing: 2px;
+ }
+ .review-card p {
+     font-size: 14.5px;
+     color: #010B13;
+     line-height: 1.6;
+     flex-grow: 1;
+ }
+
+ /* INSTAGRAM, VIDEO, LEARN MORE (unchanged) */
+ .instagram { padding: 100px 40px; background: var(--light-bg); }
+ .instagram h2 { text-align: center; font-size: 48px; margin-bottom: 60px; color: #e50914; }
+ .insta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; max-width: 1400px; margin: 0 auto; }
+ .insta-post { border-radius: 24px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.1); transition: all 0.4s ease; }
+ .insta-post:hover { transform: translateY(-10px); box-shadow: 0 25px 60px rgba(0,0,0,0.18); }
+ .insta-post img, .insta-post iframe { width: 100%; height: 380px; object-fit: cover; display: block; border: none; }
+
+ .video-section { padding: 120px 40px; background: var(--light-bg); text-align: center; }
+ .video-section h2 { font-size: 52px; margin-bottom: 60px; color: #e50914 !important; font-weight: 800; }
+ .video-frame { max-width: 1000px; margin: 0 auto; border-radius: 32px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.15); }
+
+ .learn-more { padding: 120px 40px; background: var(--light-bg); }
+ .learn-more h2 { text-align: center; font-size: 48px; margin-bottom: 80px; color: #e50914; }
+ .learn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
+ .learn-card { position: relative; height: 420px; border-radius: 28px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
+ .learn-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+ .learn-overlay { position: absolute; inset: 0; background: linear-gradient(transparent 40%, rgba(30,58,138,0.95)); display: flex; flex-direction: column; justify-content: end; padding: 40px; color: white; }
+ .learn-card:hover img { transform: scale(1.1); }
+ .learn-overlay h3 { font-size: 32px; margin-bottom: 12px; }
+ .learn-overlay a { display: inline-block; margin-top: 16px; background: #22C55E; color: #ffffff; padding: 12px 32px; border-radius: 50px; text-decoration: none; font-weight: 600; }
+
+ /* Compact Form Card */
+        .form-section {
+            margin: -80px auto 100px;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+        .form-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+        .form-header {
+            background: linear-gradient(135deg, #010B13, #010B13);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        .form-header h2 {
+            font-size: 36px;
+            margin-bottom: 8px;
+            color: white !important;
+        }
+        .form-header p {
+            font-size: 17px;
+            opacity: 0.9;
+        }
+
+        .form-body {
+            padding: 50px 60px;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .form-full { grid-column: 1 / -1; }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e2e8f4;
+            border-radius: 12px;
+            font-size: 16px;
+            background: var(--light);
+            transition: all 0.3s;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(30,58,138,0.1);
+        }
+        textarea { min-height: 130px; resize: vertical; }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #22C55E, #22C55E);
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 50px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 16px;
+            transition: all 0.3s;
+        }
+        .submit-btn:hover { transform: translateY(-2px); }
+
+        .message {
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 500;
+            margin-top: 16px;
+            display: none;
+        }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+
+ /* RESPONSIVE – 2×3 on desktop → 2 columns on tablet → 1 on mobile */
+ @media (max-width: 1100px) {
+     .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+ }
+ @media (max-width: 640px) {
+     .reviews-grid { grid-template-columns: 1fr; gap: 24px; }
+     .review-card { padding: 24px 18px; }
+     .reviews h2, .why-choose h2, .instagram h2, .video-section h2, .learn-more h2 { font-size: 40px; }
+     .lets-connect { margin: 0 20px 100px; border-radius: 32px; }
+ }
+
+        @media (max-width: 768px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .form-body { padding: 40px 30px; }
+            .form-section { margin: -60px 15px 80px; }
+        }
+        @media (max-width: 480px) {
+            .form-header h2 { font-size: 30px; }
+        }
+
+        /* MOBILE-ONLY IMPROVEMENTS FOR THE CONTACT FORM */
+@media (max-width: 1024px) {
+    .form-section {
+        margin: -60px 20px 90px;
+        padding: 0;
+    }
+    .form-card {
+        border-radius: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .form-section {
+        margin: -50px 16px 80px;
+        max-width: none;
+    }
+
+    .form-header {
+        padding: 44px 24px;
+        border-radius: 20px 20px 0 0;
+    }
+    .form-header h2 {
+        font-size: 32px;
+        line-height: 1.2;
+    }
+    .form-header p {
+        font-size: 16px;
+    }
+
+    .form-body {
+        padding: 44px 28px;
+    }
+
+    /* Single column layout */
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    /* Better input touch targets */
+    input,
+    select,
+    textarea {
+        padding: 16px 18px;
+        font-size: 16px !important;     /* Prevents zoom on iOS */
+        border-radius: 14px;
+    }
+
+    textarea {
+        min-height: 140px;
+    }
+
+    .submit-btn {
+        padding: 18px 32px;
+        font-size: 17px;
+        border-radius: 50px;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-section {
+        margin: -40px 12px 70px;
+    }
+
+    .form-header {
+        padding: 40px 20px;
+    }
+    .form-header h2 {
+        font-size: 28px;
+    }
+
+    .form-body {
+        padding: 36px 22px;
+    }
+
+    input,
+    select,
+    textarea {
+        padding: 17px 18px;
+        border-radius: 16px;
+    }
+
+    .submit-btn {
+        padding: 19px 32px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    /* Success/error messages – better readability on small screens */
+    .message {
+        font-size: 15.5px;
+        padding: 18px;
+        border-radius: 14px;
+    }
+}
+
+/* Extra polish: remove default iOS styling */
+@media (max-width: 768px) {
+    input,
+    select,
+    textarea {
+        -webkit-appearance: none;
+        appearance: none;
+    }
+}
+    </style>
+</head>
+<body>
+
+<!-- ==================== FIXED TOP NAVBAR (REEM STYLE) ==================== -->
+<header class="top-navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/twine.png" alt="Twineshots Logo" class="top-logo-img" />
+            </a>
+        </div>
+
+        <!-- Desktop Nav -->
+        <nav class="nav desktop-nav">
+            <ul>
+                <li class="active"><a href="index.html"><ion-icon name="home-outline"></ion-icon><span>Home</span></a></li>
+                <li><a href="gallery.html"><ion-icon name="images-outline"></ion-icon><span>Gallery</span></a></li>
+                <li><a href="team.html"><ion-icon name="people-outline"></ion-icon><span>Our Team</span></a></li>
+                <li><a href="services.html"><ion-icon name="aperture-outline"></ion-icon><span>Services</span></a></li>
+                <li><a href="info.html"><ion-icon name="information-circle-outline"></ion-icon><span>Info</span></a></li>
+                <li><a href="contact.html"><ion-icon name="call-outline"></ion-icon><span>Contact Us</span></a></li>
+                <li><a href="career.html"><ion-icon name="briefcase-outline"></ion-icon><span>Careers</span></a></li>
+            </ul>
+        </nav>
+
+        <div class="social-top">
+            <a href="https://www.instagram.com/twineshots?r=nametag" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a>
+            <a href="https://www.youtube.com/channel/UC6C1Alg0wFA7QTeHXMPZZiQ" target="_blank"><ion-icon name="logo-youtube"></ion-icon></a>
+            <a href="https://twitter.com/twineshots" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a>
+            <a href="https://www.facebook.com/pg/twineshots/posts/" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
+        </div>
+
+        <!-- Mobile Hamburger -->
+        <div class="hamburger" id="hamburger">
+            <ion-icon name="menu-outline"></ion-icon>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <img src="images/twine.png" alt="Logo" class="mobile-logo">
+            <ion-icon name="close-outline" id="closeMenu"></ion-icon>
+        </div>
+        <ul>
+            <li class="active"><a href="index.html"><ion-icon name="home-outline"></ion-icon> Home</a></li>
+            <li><a href="gallery.html"><ion-icon name="images-outline"></ion-icon> Gallery</a></li>
+            <li><a href="team.html"><ion-icon name="people-outline"></ion-icon> Our Team</a></li>
+            <li><a href="services.html"><ion-icon name="aperture-outline"></ion-icon><span>Services</span></a></li>
+            <li><a href="info.html"><ion-icon name="information-circle-outline"></ion-icon> Info</a></li>
+            <li><a href="contact.html"><ion-icon name="call-outline"></ion-icon> Contact Us</a></li>
+            <li><a href="career.html"><ion-icon name="briefcase-outline"></ion-icon> Careers</a></li>
+        </ul>
+        <div class="mobile-social">
+            <a href="https://www.instagram.com/twineshots?r=nametag" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a>
+            <a href="https://www.youtube.com/channel/UC6C1Alg0wFA7QTeHXMPZZiQ" target="_blank"><ion-icon name="logo-youtube"></ion-icon></a>
+            <a href="https://twitter.com/twineshots" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a>
+            <a href="https://www.facebook.com/pg/twineshots/posts/" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content Wrapper -->
+<div class="main-wrapper">
+    <main class="main-content">
+
+        <!-- Hero Banner (UNCHANGED - Cinematic Slider) -->
+        <section class="hero-banner">
+            <div class="hero-bg" id="heroBg"></div>
+
+            <div class="hero-content">
+                <div class="category-info">
+                    <h1 id="mainTitle">EVENTS COVERAGE</h1>
+                    <p id="mainDesc">Experience the raw beauty of events through our photography collections.</p>
+                </div>
+            </div>
+
+            <div class="category-slider">
+                <div class="slider-track" id="sliderTrack">
+                    <div class="slide-card active" data-bg="images/GIL_5137.jpg" data-title="Corporate events" data-desc="Capture the atmosphere, interactions, and moments">
+                        <div class="meta"><h4>Corporate Events</h4><p>Polished imagery and video highlights</p></div>
+                    </div>
+                    <div class="slide-card" data-bg="images/GIL_0877.jpg" data-title="Weddings" data-desc="Timeless memories of love, captured forever.">
+                        <div class="meta"><h4>Weddings</h4><p>Timeless stories of love</p></div>
+                    </div>
+                    <div class="slide-card" data-bg="images/GIL_0880.jpg" data-title="Conferences" data-desc="Real stories through a powerful lens.">
+                        <div class="meta"><h4>Conferences</h4><p>Multi-day conference coverage</p></div>
+                    </div>
+                    <div class="slide-card" data-bg="images/GIL_1255.jpg" data-title="Real Estate Coverage" data-desc="High-end architectural and interior photography">
+                        <div class="meta"><h4>Real Estate Coverage</h4><p>HDR imaging, twilight shots, drone views.</p></div>
+                    </div>
+                    <div class="slide-card" data-bg="images/GIL_1158.jpg" data-title="Live Stream" data-desc="Capturing every moment.">
+                        <div class="meta"><h4>Live Stream</h4><p>Professional live streaming for weddings</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories – NOW CLICKABLE & AUTO-FILTERS GALLERY -->
+        <!-- EDGE-TO-EDGE + PERFECT HORIZONTAL SLIDING -->
+        <section class="categories-grid-section">
+            <div class="section-title">
+                <h2>Our Services</h2>
+            </div>
+
+            <div class="categories-grid">
+
+                <div class="grid-card">
+                    <img src="images/12.png" alt="Weddings">
+                    <div class="grid-overlay">
+                        <span class="grid-badge">Weddings</span>
+                        <div class="grid-text">
+                            <h3>Weddings</h3>
+                            <p>Church, Garden & Traditional Ceremonies</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-card">
+                    <img src="images/gallery/CORPORATE/c9.JPG" alt="Corporate">
+                    <div class="grid-overlay">
+                        <span class="grid-badge">Corporate</span>
+                        <div class="grid-text">
+                            <h3>Corporate Events</h3>
+                            <p>Conferences, Launches & Awards</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-card">
+                    <img src="images/gallery/STUDIO/s4.jpg" alt="Portraits">
+                    <div class="grid-overlay">
+                        <span class="grid-badge">Portraits</span>
+                        <div class="grid-text">
+                            <h3>Studio Sessions</h3>
+                            <p>Headshots, Family & Fashion</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-card">
+                    <img src="images/gallery/KUKYALA/k3.jpg" alt="Kwanjula">
+                    <div class="grid-overlay">
+                        <span class="grid-badge">Kwanjula</span>
+                        <div class="grid-text">
+                            <h3>Introductions</h3>
+                            <p>Traditional Ugandan Ceremonies</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-card">
+                    <img src="images/gallery/STUDIO/s6.jpg" alt="Birthdays">
+                    <div class="grid-overlay">
+                        <span class="grid-badge">Birthdays</span>
+                        <div class="grid-text">
+                            <h3>Birthdays</h3>
+                            <p>Kids Parties & Milestone Celebrations</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-card">
+                    <img src="images/GIL_5133.jpg" alt="Live Feed">
+                    <div class="grid-overlay">
+                        <span class="grid-badge">Live Feed</span>
+                        <div class="grid-text">
+                            <h3>Live Feed</h3>
+                            <p>On-site live photo & video feed</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-card">
+                    <img src="images/GIL_5137.jpg" alt="Live Stream">
+                    <div class="grid-overlay">
+                        <span class="grid-badge">Live Stream</span>
+                        <div class="grid-text">
+                            <h3>Live Stream</h3>
+                            <p>Professional live streaming for events</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-card">
+                    <img src="images/GIL_5133.jpg" alt="Real Estate">
+                    <div class="grid-overlay">
+                        <span class="grid-badge">Real Estate</span>
+                        <div class="grid-text">
+                            <h3>Real Estate Coverage</h3>
+                            <p>High-end architectural and interior photography</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-card">
+                    <img src="images/gallery/CORPORATE/c3.JPG" alt="Conference">
+                    <div class="grid-overlay">
+                        <span class="grid-badge">Conference</span>
+                        <div class="grid-text">
+                            <h3>Conference</h3>
+                            <p>Multi-day conference coverage</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-card">
+                    <img src="images/gallery/CORPORATE/c5.JPG" alt="Workshops">
+                    <div class="grid-overlay">
+                        <span class="grid-badge">Workshops</span>
+                        <div class="grid-text">
+                            <h3>Workshops</h3>
+                            <p>Professional documentation of training sessions</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-card">
+                    <img src="images/GIL_5132.jpg" alt="Documentaries">
+                    <div class="grid-overlay">
+                        <span class="grid-badge">Documentaries</span>
+                        <div class="grid-text">
+                            <h3>Documentaries</h3>
+                            <p>Long-form storytelling</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-card">
+                    <img src="images/GIL_0881.jpg" alt="Trainings">
+                    <div class="grid-overlay">
+                        <span class="grid-badge">Trainings</span>
+                        <div class="grid-text">
+                            <h3>Trainings</h3>
+                            <p>Video production for corporate training</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-card">
+                    <img src="images/GIL_1255.jpg" alt="Equipment Hire">
+                    <div class="grid-overlay">
+                        <span class="grid-badge">Equipment Hire</span>
+                        <div class="grid-text">
+                            <h3>Equipment Hire</h3>
+                            <p>Equipment for hire such as Sony, Canon, Nikon</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-card">
+                    <img src="images/GIL_5200.jpg" alt="Commercials">
+                    <div class="grid-overlay">
+                        <span class="grid-badge">Commercials</span>
+                        <div class="grid-text">
+                            <h3>Commercials</h3>
+                            <p>High-impact TV and online commercials</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-card">
+                    <img src="images/gallery/STUDIO/s20.jpg" alt="Studio Hire">
+                    <div class="grid-overlay">
+                        <span class="grid-badge">Studio Hire</span>
+                        <div class="grid-text">
+                            <h3>Studio Hire</h3>
+                            <p>Rent our professional photography studio</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-card">
+                    <img src="images/gallery/KUKYALA/k5.jpg" alt="Kukyaala">
+                    <div class="grid-overlay">
+                        <span class="grid-badge">Kukyaala</span>
+                        <div class="grid-text">
+                            <h3>Kukyaala</h3>
+                            <p>Discreet and respectful coverage of the official family visit</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-card">
+                    <img src="images/gallery/STUDIO/s12.jpg" alt="Birthdays">
+                    <div class="grid-overlay">
+                        <span class="grid-badge">Birthdays</span>
+                        <div class="grid-text">
+                            <h3>Birthdays</h3>
+                            <p>From children's parties to milestone celebrations</p>
+                        </div>
+                    </div>
+                </div>
+
+
+            <div class="grid-card">
+                <img src="images/gallery/STUDIO/s19.jpg" alt="Social Events">
+                <div class="grid-overlay">
+                    <span class="grid-badge">Social Events</span>
+                    <div class="grid-text">
+                        <h3>Social Events</h3>
+                        <p>Here we handle events like baptism, bridal showers, baby showers, outdoor shoots</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+<!-- NEW: WHY CHOOSE US -->
+<section class="why-choose">
+    <h2>Why Choose Twineshots?</h2>
+    <p>We don’t just take photos — we preserve emotions, tell stories, and create art that lasts generations.</p>
+    <div class="why-grid">
+        <div class="why-card">
+            <ion-icon name="bulb-outline"></ion-icon>
+            <h3>Creativity</h3>
+            <p>We value the power of imagination and strive to bring fresh perspectives and innovative ideas to every project</p>
+        </div>
+        <div class="why-card">
+            <ion-icon name="trophy-outline"></ion-icon>
+            <h3>Excellence</h3>
+            <p>We are committed to delivering timely exceptional work in every aspect of our service.</p>
+        </div>
+        <div class="why-card">
+            <ion-icon name="shield-outline"></ion-icon>
+            <h3>Integrity</h3>
+            <p>We conduct ourselves with utmost honesty, transparency, patience and professionalism.</p>
+        </div>
+        <div class="why-card">
+            <ion-icon name="heart-outline"></ion-icon>
+            <h3>Passion</h3>
+            <p>Content creation is not just a job for us; it is our lifelong passion.</p>
+        </div>
+        <div class="why-card">
+            <ion-icon name="people-outline"></ion-icon>
+            <h3>Collaboration</h3>
+            <p>We value teamwork and recognize the importance of collaborating with clients, partners, fellow team players in the industry </p>
+        </div>
+        <div class="why-card">
+            <ion-icon name="person-outline"></ion-icon>
+            <h3>Client Focus</h3>
+            <p>Our clients are at the centre of everything we do. We actively listen to their needs, preferences, and ideas</p>
+        </div>
+    </div>
+</section>
+
+        <!-- COMPACT FORM -->
+        <section class="form-section" id="contact-form">
+            <div class="form-card">
+                <div class="form-header">
+                    <h2>Book Your Session</h2>
+                    <p>Fill in your details — we reply within 2 hours</p>
+                </div>
+                <div class="form-body">
+                    <form id="contactForm" action="https://formspree.io/f/xkgdbqzg" method="POST" novalidate>
+                        <div class="form-grid">
+                            <input type="text" name="first_name" placeholder="First Name" required>
+                            <input type="text" name="last_name" placeholder="Last Name" required>
+                            <input type="email" name="email" placeholder="Email" required>
+                            <input type="tel" name="phone" placeholder="Phone (+256...)" required>
+
+                            <select name="service" required>
+                                <option value="" disabled selected>Select Service</option>
+                                <option>Wedding</option>
+                                <option>Real Estate Category</option>
+                                <option>Workshops</option>
+                                <option>Conferences</option>
+                                <option>Corporate Event</option>
+                                <option>Birthday/Party</option>
+                                <option>Live Stream</option>
+                                <option>Live Feed</option>
+                                <option>Documentaries</option>
+                                <option>Trainings</option>
+                                <option>Equipment Hire</option>
+                                <option>Commercials</option>
+                                <option>Studio Session</option>
+                                <option>Studio Hire</option>
+                                <option>Introductions</option>
+                                <option>Kukyaala</option>
+                                <option>Social Event</option>
+                            </select>
+
+                            <input type="text" name="venue" placeholder="Venue (optional)">
+                            <input type="date" name="event_date">
+                            <input type="text" name="city_state" placeholder="City/District">
+
+                            <textarea name="message" placeholder="Tell us about your event..." class="form-full" required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Send Message</button>
+                        <div id="successMsg" class="message success">Thank you! We'll contact you soon.</div>
+                        <div id="errorMsg" class="message error">Please fix the errors above.</div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <!-- Showcase -->
+        <section class="showcase-section">
+            <h2>Showcase</h2>
+            <div class="showcase-grid">
+                <div class="showcase-card"><img src="images/6.jpg" alt="Wedding"><div class="showcase-overlay"><h3>Elegant Alpine Wedding</h3><p>Captured at Serena</p></div></div>
+                <div class="showcase-card"><img src="images/7.jpg" alt="Celebration"><div class="showcase-overlay"><h3>Northern Lights</h3><p>Kavule, 2024</p></div></div>
+                <div class="showcase-card"><img src="images/8.jpg" alt="Food"><div class="showcase-overlay"><h3>Jubilation</h3><p>Documentary Series</p></div></div>
+                <div class="showcase-card"><img src="images/9.jpg" alt="Party"><div class="showcase-overlay"><h3>Neon Nights</h3><p>Annual Gala 2025</p></div></div>
+                <div class="showcase-card"><img src="images/10.jpg" alt="Party"><div class="showcase-overlay"><h3>Kukyala</h3><p>August 2025</p></div></div>
+                <div class="showcase-card"><img src="images/11.jpg" alt="Party"><div class="showcase-overlay"><h3>Introduction</h3><p>Mbarara</p></div></div>
+                <div class="showcase-card"><img src="images/12.png" alt="Party"><div class="showcase-overlay"><h3>Campaign</h3><p>Masaka</p></div></div>
+                <div class="showcase-card"><img src="images/14.jpg" alt="Party"><div class="showcase-overlay"><h3>Reception Nights</h3><p>Kampala</p></div></div>
+                <div class="showcase-card"><img src="images/15.jpg" alt="Party"><div class="showcase-overlay"><h3>Mass</h3><p>Easters</p></div></div>
+                <div class="showcase-card"><img src="images/16.png" alt="Party"><div class="showcase-overlay"><h3>Evers</h3><p>Entebbe</p></div></div>
+                <div class="showcase-card"><img src="images/17.jpg" alt="Party"><div class="showcase-overlay"><h3>Wedding</h3><p>Nakawa</p></div></div>
+            </div>
+        </section>
+
+        <!-- Partners -->
+        <br><br>
+        <h2 class="section-heading">Our Partners</h2>
+        <br>
+        <div class="partners-only">
+            <div class="partners-logos">
+                <a href="index.html" target="_blank"><img src="images/cks.png" alt="CloudKing Systems" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Position.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/20tents.jpg" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Sua.jpg" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Bni.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/stuart.PNG" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Croplife.PNG" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Exceed.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/itech.PNG" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Leap.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Makerere.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/olink.PNG" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Shake.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Shuttle.PNG" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Sprout.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Tents.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Xtent.JPEG" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/shop.JPEG" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/smart.jpg" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Tech.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Akvo.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/candy.jpg" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Arl.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Beta.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Brago.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/elite.jpg" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/glisten.jpg" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Child.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Cilla.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Lisa.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/jezo.jpg" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/lian.jpg" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Cock.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/opts.jpg" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Code.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Dag.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/penny.jpg" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Crest.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Dag1.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/tara.jpg" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Deed.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Hotel.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Dag2.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Guad1.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Fair.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Fire.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Perfect.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Guad2.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Jk.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Equata.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Incise.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Legacy.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Logo.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Kam.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Miray.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Nug.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Nomad.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Seam.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Pretty.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Perfect.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/opts.jpg" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Task.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Volta.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Serene.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Sprint.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Tiva.png" alt="Partner" /></a>
+                <a href="index.html" target="_blank"><img src="images/partners/Viira.png" alt="Partner" /></a>
+            </div>
+        </div>
+
+
+
+<!-- NEW: LET'S CONNECT -->
+<section class="lets-connect">
+    <h2>Ready to Create Something Beautiful?</h2>
+    <p>Whether it’s your wedding, corporate event, or personal portrait — we’re here to make it unforgettable.</p>
+    <a href="contact.html" class="connect-btn">Let’s Work Together</a>
+</section>
+
+<!-- NEW: REVIEWS -->
+        <section class="reviews">
+            <h2>What Our Clients Say</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <img src="images/reviews/2.JPEG" alt="Sarah" class="review-img">
+                    <div class="review-content">
+                        <h4>Sarah & Joshua</h4>
+                        <div class="stars">★★★★★</div>
+                        <p>“Best wedding photographers ever! Captured every moment perfectly.”</p>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <img src="images/reviews/1.JPEG" alt="David" class="review-img">
+                    <div class="review-content">
+                        <h4>David – CEO, TechCorp</h4>
+                        <div class="stars">★★★★★</div>
+                        <p>“Professional, creative, and delivered beyond expectations.”</p>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <img src="images/reviews/3.JPEG" alt="Aisha" class="review-img">
+                    <div class="review-content">
+                        <h4>Aisha & Mark</h4>
+                        <div class="stars">★★★★★</div>
+                        <p>“Our photos are pure magic. Thank you for making our day eternal.”</p>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <img src="images/reviews/4.JPEG" alt="Grace" class="review-img">
+                    <div class="review-content">
+                        <h4>Grace – Bride 2025</h4>
+                        <div class="stars">★★★★★</div>
+                        <p>“Made us feel so comfortable. The results? Absolutely stunning!”</p>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <img src="images/reviews/4.JPEG" alt="Michael" class="review-img">
+                    <div class="review-content">
+                        <h4>Michael & Linda</h4>
+                        <div class="stars">★★★★★</div>
+                        <p>“Flawless from start to finish. Highly recommend!”</p>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <img src="images/reviews/2.JPEG" alt="Esther" class="review-img">
+                    <div class="review-content">
+                        <h4>Esther – Event Planner</h4>
+                        <div class="stars">★★★★★</div>
+                        <p>“The best team I’ve worked with. On time, creative, amazing!”</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<!-- NEW: INSTAGRAM FEED -->
+<section class="instagram">
+    <h2>Follow Us @twineshots</h2>
+    <div class="insta-grid">
+        <div class="insta-post"><img src="images/insta/1.jpg" alt="Wedding"></div>
+        <div class="insta-post"><img src="images/insta/2.jpg" alt="Portrait"></div>
+        <div class="insta-post">
+            <iframe src="https://www.instagram.com/reel/DROyqwqCIj9/embed" allowfullscreen></iframe>
+        </div>
+        <div class="insta-post">
+            <iframe src="https://www.instagram.com/reel/DQ8iv8xCJvf/embed" allowfullscreen></iframe>
+        </div>
+        <div class="insta-post">
+            <iframe src="https://www.instagram.com/reel/DKhBFoEIGqP/embed" allowfullscreen></iframe>
+        </div>
+        <div class="insta-post"><img src="images/insta/3.jpg" alt="Couple"></div>
+    </div>
+</section>
+
+<!-- NEW: SEE OUR WORK VIDEO -->
+<section class="video-section">
+    <h2>See Our Work</h2>
+    <div class="video-frame">
+        <iframe width="100%" height="560" src="https://www.youtube.com/embed/eVmz1oUGgqw" title="Twineshots Showreel" frameborder="0" allowfullscreen></iframe>
+    </div>
+</section>
+
+<!-- NEW: LEARN MORE -->
+<section class="learn-more">
+    <h2>Discover More</h2>
+    <div class="learn-grid">
+        <div class="learn-card">
+            <img src="images/1000.jpg" alt="About Us">
+            <div class="learn-overlay">
+                <h3>About Twineshots</h3>
+                <p>Our story, values, and mission</p>
+                <a href="info.html">Learn More</a>
+            </div>
+        </div>
+        <div class="learn-card">
+            <img src="images/GIL_1249.jpg" alt="Our Team">
+            <div class="learn-overlay">
+                <h3>Meet Our Team</h3>
+                <p>Creative minds behind the lens</p>
+                <a href="team.html">Meet Us</a>
+            </div>
+        </div>
+        <div class="learn-card">
+            <img src="images/14.jpg" alt="Gallery">
+            <div class="learn-overlay">
+                <h3>Full Gallery</h3>
+                <p>Thousands of moments captured</p>
+                <a href="gallery.html">View Gallery</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+    </main>
+</div>
+
+<!-- WhatsApp Float Button -->
+<div class="whatsapp-float" id="whatsappBtn">
+    <ion-icon name="logo-whatsapp"></ion-icon>
+</div>
+
+<!-- WhatsApp Modal -->
+<div class="whatsapp-modal" id="whatsappModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <ion-icon name="logo-whatsapp"></ion-icon>
+            <h3>Contact Us on WhatsApp</h3>
+            <span class="close" id="closeModal">×</span>
+        </div>
+        <p>Select a service center to start chatting:</p>
+        <div class="service-list">
+            <button class="service-btn" data-phone="256752969130"><ion-icon name="logo-whatsapp"></ion-icon> Twineshots Events</button>
+            <button class="service-btn" data-phone="256200906818"><ion-icon name="logo-whatsapp"></ion-icon> Twineshots Studio Support</button>
+        </div>
+        <div class="powered-by">
+            <img src="images/cks.png" alt="CloudKing Systems" class="cks-logo" />
+            <span>Powered by</span> CLOUDKING SYSTEMS
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-col">
+            <h4>Twineshots</h4>
+            <p>We are your top photography company that understands how to capture long lasting memories with you.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <p>Email: ask@twineshots.com</p>
+            <p>Phone: +256752969130 / +256393228953</p>
+        </div>
+        <div class="footer-col">
+            <h4>Location</h4>
+            <p>Elements courts, alongside Makerere Kasubi road,<br>Room G001</p>
+        </div>
+        <div class="footer-col">
+            <h4>Follow Us</h4>
+            <div class="social-links">
+                <a href="https://www.instagram.com/twineshots?r=nametag"><ion-icon name="logo-instagram"></ion-icon></a>
+                <a href="https://www.facebook.com/pg/twineshots/posts/"><ion-icon name="logo-facebook"></ion-icon></a>
+                <a href="https://twitter.com/twineshots"><ion-icon name="logo-twitter"></ion-icon></a>
+                <a href="https://www.instagram.com/twineshots_studio?igsh=MjE2NmFmZzhlY3Rt&utm_source=qr"><ion-icon name="logo-instagram"></ion-icon></a>
+                <a href="https://www.youtube.com/channel/UC6C1Alg0wFA7QTeHXMPZZiQ"><ion-icon name="logo-youtube"></ion-icon></a>
+                <a href="https://www.tiktok.com/@twineshots?_t=8lt0P1lwB2U&_r=1"><ion-icon name="logo-tiktok"></ion-icon></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 Twineshots. All rights reserved.</p>
+    </div>
+</footer>
+<script src="scripts1.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

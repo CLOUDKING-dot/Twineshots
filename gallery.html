@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Twineshots - gallery</title>
+    <link rel="icon" href="images/twine.png" type="image/png">
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --dark: #172554;
+            --light: #f8fafc;
+            --accent: #3b82f6;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--light); color: #1f2937; overflow-x: hidden; }
+
+        /* ==================== NAVBAR (same as index) ==================== */
+        .top-navbar { /* your existing navbar styles - paste from index.html */ }
+        /* ... (keep your full navbar CSS here) ... */
+
+        /* ==================== HERO SECTION ==================== */
+        .gallery-hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('images/hero1.jpg') center/cover no-repeat fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        .gallery-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.4), rgba(0,0,0,0.6));
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInDown 1.2s ease-out;
+        }
+        .hero-content h1 {
+            font-size: 76px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        .hero-content p {
+            font-size: 24px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+
+     /* ULTRA-FAST GALLERY — ZERO LAG, EVEN WITH 100+ HIGH-RES IMAGES */
+.filter-tabs {
+    padding: 60px 20px 30px;
+    text-align: center;
+    background: white;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+    position: relative;
+    z-index: 10;
+}
+.filter-tabs::-webkit-scrollbar { display: none; }
+
+.filter-btn {
+    display: inline-block;
+    background: transparent;
+    border: 2px solid #e2e8f4;
+    color: #475569;
+    padding: 11px 26px;
+    margin: 6px 4px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 14.5px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.filter-btn.active,
+.filter-btn:hover {
+    background: #e50914;
+    color: white;
+    border-color: #e50914;
+    transform: translateY(-2px);
+}
+
+.gallery-container {
+    padding: 20px 16px 100px;
+    max-width: 1600px;
+    margin: 0 auto;
+    contain: layout style;
+}
+
+/* SMALLER, FASTER GRID — PERFECT BALANCE */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+    padding: 0;
+    contain: layout style;
+    transform: translateZ(0);
+}
+
+/* Cards — compact & lightning fast */
+.gallery-item {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.18);
+    background: #000;
+    aspect-ratio: 1 / 1.1;
+    contain: layout style paint; /* THIS KILLS ALL SCROLL LAG */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.gallery-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.gallery-item:hover {
+    transform: translateY(-8px) !important;
+}
+
+/* Images — forced small size + instant decode */
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    image-rendering: -webkit-optimize-contrast;
+    will-change: transform;
+}
+
+/* MOBILE — 2 COLUMNS, SUPER FAST */
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+    .gallery-item { border-radius: 14px; }
+}
+@media (max-width: 480px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .gallery-item { max-width: 340px; margin: 0 auto; }
+}
+    </style>
+</head>
+<body>
+<!-- ==================== FIXED TOP NAVBAR (REEM STYLE) ==================== -->
+<header class="top-navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/twine.png" alt="Twineshots Logo" class="top-logo-img" />
+            </a>
+        </div>
+
+        <!-- Desktop Nav -->
+        <nav class="nav desktop-nav">
+            <ul>
+                <li><a href="index.html"><ion-icon name="home-outline"></ion-icon><span>Home</span></a></li>
+                <li class="active"><a href="gallery.html"><ion-icon name="images-outline"></ion-icon><span>Gallery</span></a></li>
+                <li><a href="team.html"><ion-icon name="people-outline"></ion-icon><span>Our Team</span></a></li>
+                <li><a href="services.html"><ion-icon name="aperture-outline"></ion-icon><span>Services</span></a></li>
+                <li><a href="info.html"><ion-icon name="information-circle-outline"></ion-icon><span>Info</span></a></li>
+                <li><a href="contact.html"><ion-icon name="call-outline"></ion-icon><span>Contact Us</span></a></li>
+                <li><a href="career.html"><ion-icon name="briefcase-outline"></ion-icon><span>Careers</span></a></li>
+            </ul>
+        </nav>
+
+        <div class="social-top">
+            <a href="https://www.instagram.com/twineshots?r=nametag" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a>
+            <a href="https://www.youtube.com/channel/UC6C1Alg0wFA7QTeHXMPZZiQ" target="_blank"><ion-icon name="logo-youtube"></ion-icon></a>
+            <a href="https://twitter.com/twineshots" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a>
+            <a href="https://www.facebook.com/pg/twineshots/posts/" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
+        </div>
+
+        <!-- Mobile Hamburger -->
+        <div class="hamburger" id="hamburger">
+            <ion-icon name="menu-outline"></ion-icon>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <img src="images/twine.png" alt="Logo" class="mobile-logo">
+            <ion-icon name="close-outline" id="closeMenu"></ion-icon>
+        </div>
+        <ul>
+            <li><a href="index.html"><ion-icon name="home-outline"></ion-icon> Home</a></li>
+            <li class="active"><a href="gallery.html"><ion-icon name="images-outline"></ion-icon> Gallery</a></li>
+            <li><a href="team.html"><ion-icon name="people-outline"></ion-icon> Our Team</a></li>
+            <li><a href="services.html"><ion-icon name="aperture-outline"></ion-icon><span>Services</span></a></li>
+            <li><a href="info.html"><ion-icon name="information-circle-outline"></ion-icon> Info</a></li>
+            <li><a href="contact.html"><ion-icon name="call-outline"></ion-icon> Contact Us</a></li>
+            <li><a href="career.html"><ion-icon name="briefcase-outline"></ion-icon> Careers</a></li>
+        </ul>
+        <div class="mobile-social">
+            <a href="https://www.instagram.com/twineshots?r=nametag" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a>
+            <a href="https://www.youtube.com/channel/UC6C1Alg0wFA7QTeHXMPZZiQ" target="_blank"><ion-icon name="logo-youtube"></ion-icon></a>
+            <a href="https://twitter.com/twineshots" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a>
+            <a href="https://www.facebook.com/pg/twineshots/posts/" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
+        </div>
+    </div>
+</header>
+
+<!-- ==================== HERO ==================== -->
+<section class="gallery-hero">
+    <div class="hero-content">
+        <h1>Our Gallery</h1>
+        <p>Explore breathtaking moments captured with passion, precision, and artistry</p>
+    </div>
+</section>
+
+<!-- ==================== FILTER TABS ==================== -->
+<!-- FILTER TABS -->
+<div class="filter-tabs">
+    <button class="filter-btn active" data-filter="all">All Works</button>
+    <button class="filter-btn" data-filter="weddings">Weddings</button>
+    <button class="filter-btn" data-filter="introductions">Introductions</button>
+    <button class="filter-btn" data-filter="studio">Studio Sessions</button>
+    <button class="filter-btn" data-filter="corporate">Corporate Events</button>
+    <button class="filter-btn" data-filter="kukyaala">Kukyaala</button>
+</div>
+
+<!-- GALLERY GRID – ULTRA-FAST LOADING (lazy + async) -->
+<div class="gallery-container">
+    <div class="gallery-grid" id="galleryGrid">
+
+        <!-- 24 WEDDINGS -->
+        <div class="gallery-item" data-category="weddings">
+            <img src="images/gallery/WEDDINGS/w1.jpg" alt="Wedding" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="images/gallery/WEDDINGS/w2.JPG" alt="Wedding" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="images/gallery/WEDDINGS/w3.jpg" alt="Wedding" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="images/gallery/WEDDINGS/w4.jpg" alt="Wedding" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="images/gallery/WEDDINGS/w5.jpg" alt="Wedding" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="images/gallery/WEDDINGS/w6.jpg" alt="Wedding" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="images/gallery/WEDDINGS/w7.jpg" alt="Wedding" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="images/gallery/WEDDINGS/w8.jpg" alt="Wedding" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="images/gallery/WEDDINGS/w9.jpg" alt="Wedding" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="images/gallery/WEDDINGS/w10.jpg" alt="Wedding" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="images/gallery/WEDDINGS/w11.jpg" alt="Wedding" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="images/gallery/WEDDINGS/w12.JPG" alt="Wedding" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="images/gallery/WEDDINGS/w13.jpg" alt="Wedding" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="images/gallery/WEDDINGS/w14.jpg" alt="Wedding" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="images/gallery/WEDDINGS/w15.jpg" alt="Wedding" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="images/gallery/WEDDINGS/w16.jpg" alt="Wedding" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="images/gallery/WEDDINGS/w17.jpg" alt="Wedding" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="images/gallery/WEDDINGS/w18.jpg" alt="Wedding" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="images/gallery/WEDDINGS/w19.JPG" alt="Wedding" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="images/gallery/WEDDINGS/w20.jpg" alt="Wedding" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="images/gallery/WEDDINGS/w21.jpg" alt="Wedding" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="images/gallery/WEDDINGS/w22.jpg" alt="Wedding" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="images/gallery/WEDDINGS/w23.jpg" alt="Wedding" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="weddings">
+            <img src="images/gallery/WEDDINGS/w24.jpg" alt="Wedding" loading="lazy" decoding="async">
+        </div>
+
+        <!-- 18 INTRODUCTIONS -->
+        <div class="gallery-item" data-category="introductions">
+            <img src="images/gallery/INTRODUCTIONS/i1.JPG" alt="Introduction" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="introductions">
+            <img src="images/gallery/INTRODUCTIONS/i2.JPG" alt="Introduction" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="introductions">
+            <img src="images/gallery/INTRODUCTIONS/i3.JPG" alt="Introduction" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="introductions">
+            <img src="images/gallery/INTRODUCTIONS/i4.jpg" alt="Introduction" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="introductions">
+            <img src="images/gallery/INTRODUCTIONS/i5.JPG" alt="Introduction" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="introductions">
+            <img src="images/gallery/INTRODUCTIONS/i6.JPG" alt="Introduction" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="introductions">
+            <img src="images/gallery/INTRODUCTIONS/i7.jpg" alt="Introduction" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="introductions">
+            <img src="images/gallery/INTRODUCTIONS/i8.jpg" alt="Introduction" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="introductions">
+            <img src="images/gallery/INTRODUCTIONS/i9.jpg" alt="Introduction" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="introductions">
+            <img src="images/gallery/INTRODUCTIONS/i10.jpg" alt="Introduction" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="introductions">
+            <img src="images/gallery/INTRODUCTIONS/i11.jpg" alt="Introduction" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="introductions">
+            <img src="images/gallery/INTRODUCTIONS/i12.jpg" alt="Introduction" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="introductions">
+            <img src="images/gallery/INTRODUCTIONS/i13.jpg" alt="Introduction" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="introductions">
+            <img src="images/gallery/INTRODUCTIONS/i14.jpg" alt="Introduction" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="introductions">
+            <img src="images/gallery/INTRODUCTIONS/i15.jpg" alt="Introduction" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="introductions">
+            <img src="images/gallery/INTRODUCTIONS/i16.jpg" alt="Introduction" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="introductions">
+            <img src="images/gallery/INTRODUCTIONS/i17.jpg" alt="Introduction" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="introductions">
+            <img src="images/gallery/INTRODUCTIONS/i18.jpg" alt="Introduction" loading="lazy" decoding="async">
+        </div>
+
+        <!-- 25 STUDIO SESSIONS -->
+        <div class="gallery-item" data-category="studio">
+            <img src="images/gallery/STUDIO/s1.jpg" alt="Studio" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="studio">
+            <img src="images/gallery/STUDIO/s2.jpg" alt="Studio" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="studio">
+            <img src="images/gallery/STUDIO/s3.jpg" alt="Studio" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="studio">
+            <img src="images/gallery/STUDIO/s4.jpg" alt="Studio" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="studio">
+            <img src="images/gallery/STUDIO/s5.jpg" alt="Studio" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="studio">
+            <img src="images/gallery/STUDIO/s6.jpg" alt="Studio" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="studio">
+            <img src="images/gallery/STUDIO/s7.jpg" alt="Studio" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="studio">
+            <img src="images/gallery/STUDIO/s8.jpg" alt="Studio" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="studio">
+            <img src="images/gallery/STUDIO/s9.jpg" alt="Studio" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="studio">
+            <img src="images/gallery/STUDIO/s10.jpg" alt="Studio" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="studio">
+            <img src="images/gallery/STUDIO/s11.jpg" alt="Studio" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="studio">
+            <img src="images/gallery/STUDIO/s12.jpg" alt="Studio" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="studio">
+            <img src="images/gallery/STUDIO/s13.jpg" alt="Studio" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="studio">
+            <img src="images/gallery/STUDIO/s14.jpg" alt="Studio" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="studio">
+            <img src="images/gallery/STUDIO/s15.jpg" alt="Studio" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="studio">
+            <img src="images/gallery/STUDIO/s16.jpg" alt="Studio" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="studio">
+            <img src="images/gallery/STUDIO/s17.jpg" alt="Studio" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="studio">
+            <img src="images/gallery/STUDIO/s18.jpg" alt="Studio" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="studio">
+            <img src="images/gallery/STUDIO/s19.jpg" alt="Studio" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="studio">
+            <img src="images/gallery/STUDIO/s20.jpg" alt="Studio" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="studio">
+            <img src="images/gallery/STUDIO/s21.jpg" alt="Studio" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="studio">
+            <img src="images/gallery/STUDIO/s22.jpg" alt="Studio" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="studio">
+            <img src="images/gallery/STUDIO/s23.jpg" alt="Studio" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="studio">
+            <img src="images/gallery/STUDIO/s24.jpg" alt="Studio" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="studio">
+            <img src="images/gallery/STUDIO/s25.jpg" alt="Studio" loading="lazy" decoding="async">
+        </div>
+
+        <!-- 10 CORPORATE EVENTS -->
+        <div class="gallery-item" data-category="corporate">
+            <img src="images/gallery/CORPORATE/c1.JPG" alt="Corporate" loading="lazy" decoding="async">
+        </div>
+
+        <div class="gallery-item" data-category="corporate">
+        <img src="images/gallery/CORPORATE/c2.JPG" alt="Corporate" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="corporate">
+        <img src="images/gallery/CORPORATE/c3.JPG" alt="Corporate" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="corporate">
+        <img src="images/gallery/CORPORATE/c4.JPG" alt="Corporate" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="corporate">
+        <img src="images/gallery/CORPORATE/c5.JPG" alt="Corporate" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="corporate">
+        <img src="images/gallery/CORPORATE/c6.JPG" alt="Corporate" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="corporate">
+        <img src="images/gallery/CORPORATE/c7.JPG" alt="Corporate" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="corporate">
+        <img src="images/gallery/CORPORATE/c8.JPG" alt="Corporate" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="corporate">
+        <img src="images/gallery/CORPORATE/c9.JPG" alt="Corporate" loading="lazy" decoding="async">
+        </div>
+
+    <!-- 8 KUKYAALA -->
+        <div class="gallery-item" data-category="kukyaala">
+        <img src="images/gallery/KUKYALA/k1.jpg" alt="Kukyaala" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="kukyaala">
+        <img src="images/gallery/KUKYALA/k2.jpg" alt="Kukyaala" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="kukyaala">
+        <img src="images/gallery/KUKYALA/k3.jpg" alt="Kukyaala" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="kukyaala">
+        <img src="images/gallery/KUKYALA/k4.jpg" alt="Kukyaala" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="kukyaala">
+        <img src="images/gallery/KUKYALA/k5.jpg" alt="Kukyaala" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="kukyaala">
+        <img src="images/gallery/KUKYALA/k6.jpg" alt="Kukyaala" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="kukyaala">
+        <img src="images/gallery/KUKYALA/k7.jpg" alt="Kukyaala" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="kukyaala">
+        <img src="images/gallery/KUKYALA/k8.jpg" alt="Kukyaala" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-item" data-category="kukyaala">
+        <img src="images/gallery/KUKYALA/k9.jpg" alt="Kukyaala" loading="lazy" decoding="async">
+        </div>
+
+    </div>
+</div>
+
+
+
+<!-- WhatsApp Float Button -->
+<div class="whatsapp-float" id="whatsappBtn">
+    <ion-icon name="logo-whatsapp"></ion-icon>
+</div>
+
+<!-- WhatsApp Modal -->
+<div class="whatsapp-modal" id="whatsappModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <ion-icon name="logo-whatsapp"></ion-icon>
+            <h3>Contact Us on WhatsApp</h3>
+            <span class="close" id="closeModal">×</span>
+        </div>
+        <p>Select a service center to start chatting:</p>
+        <div class="service-list">
+            <button class="service-btn" data-phone="256752969130"><ion-icon name="logo-whatsapp"></ion-icon> Twineshots Events</button>
+            <button class="service-btn" data-phone="256200906818"><ion-icon name="logo-whatsapp"></ion-icon> Twineshots Studio Support</button>
+        </div>
+        <div class="powered-by">
+            <img src="images/cks.png" alt="CloudKing Systems" class="cks-logo" />
+            <span>Powered by</span> CLOUDKING SYSTEMS
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-col">
+            <h4>Twineshots</h4>
+            <p>We are your top photography company that understands how to capture long lasting memories with you.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <p>Email: ask@twineshots.com</p>
+            <p>Phone: +256752969130 / +256393228953</p>
+        </div>
+        <div class="footer-col">
+            <h4>Location</h4>
+            <p>Elements courts, alongside Makerere Kasubi road,<br>Room G001</p>
+        </div>
+        <div class="footer-col">
+            <h4>Follow Us</h4>
+            <div class="social-links">
+                <a href="https://www.instagram.com/twineshots?r=nametag"><ion-icon name="logo-instagram"></ion-icon></a>
+                <a href="https://www.facebook.com/pg/twineshots/posts/"><ion-icon name="logo-facebook"></ion-icon></a>
+                <a href="https://twitter.com/twineshots"><ion-icon name="logo-twitter"></ion-icon></a>
+                <a href="https://www.instagram.com/twineshots_studio?igsh=MjE2NmFmZzhlY3Rt&utm_source=qr"><ion-icon name="logo-instagram"></ion-icon></a>
+                <a href="https://www.youtube.com/channel/UC6C1Alg0wFA7QTeHXMPZZiQ"><ion-icon name="logo-youtube"></ion-icon></a>
+                <a href="https://www.tiktok.com/@twineshots?_t=8lt0P1lwB2U&_r=1"><ion-icon name="logo-tiktok"></ion-icon></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 Twineshots. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+    // FASTEST POSSIBLE FILTER + LAZY LOAD
+    const items = document.querySelectorAll('.gallery-item');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+
+    // Filter — instant
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filter = btn.dataset.filter;
+
+            items.forEach((item, i) => {
+                const match = filter === 'all' || item.dataset.category === filter;
+                item.style.display = match ? 'block' : 'none';
+
+                if (match) {
+                    // Trigger reflow only once
+                    void item.offsetHeight;
+                    item.classList.add('visible');
+                } else {
+                    item.classList.remove('visible');
+                }
+            });
+        });
+    });
+
+    // Intersection Observer — only load/animate when in view (ultra fast)
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target); // Only animate once
+            }
+        });
+    }, {
+        rootMargin: '100px', // Start loading a bit early
+        threshold: 0.1
+    });
+
+    items.forEach(item => {
+        // Force lazy loading + low-quality placeholder
+        const img = item.querySelector('img');
+        img.loading = 'lazy';
+        img.decoding = 'async';
+
+        // Optional: add low-res placeholder
+        // img.src = img.dataset.lowsrc || img.src;
+
+        observer.observe(item);
+    });
+</script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
